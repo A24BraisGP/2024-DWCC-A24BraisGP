@@ -4,9 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script>
+
+    <!--
+     <script>
       let num = 123;
     </script>
+     -->
+
+    <!-- Cos atributos async e defer postergamos a carga dos scripts para poñela a nivel de interpretación do html e      evitar ter conflitos de carga coas dúas linguaxes-->
+    <script async src="script.js"></script>
+    <!-- Preferible usalo defer coa etiqueta script dentro da árbore head -->
+    <script defer src="script2.js"></script>
   </head>
 
   <body>
