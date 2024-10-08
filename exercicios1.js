@@ -9,7 +9,7 @@ switch (dia) {
     console.log('Día non laborable');
     break;
   case 'Sábado':
-    console.log('Día non laborable');
+    console.log('Día ao mellor laborable');
     break;
   default:
     console.log('Toca currar :(');
@@ -27,11 +27,11 @@ if (num3 > num1 && num3 > num2) console.log(num3);
 
 // 3. Escribe os números pares do 0 ao 30, incluídos.
 
-for (let i = 0; i < 31; i = i + 2) {
+for (let i = 2; i < 31; i = i + 2) {
   console.log(i);
 }
 
-// // 4. Escribe as potencias de 2, dende 2⁰ ata 2 20. Para cada potencia debe saír un texto similar a “2 elevado a 0 = 1”.
+// // 4. Escribe as potencias de 2, dende 2⁰ ata 2 20. Para cada potencia debe saír un texto similar a “2 elevado a 0 = 1”.43.21
 let exp = 0;
 do {
   console.log(`2 elevado a ${exp} = ${Math.pow(2, exp)}`);
@@ -69,3 +69,26 @@ if (imc1 > imc2) {
 } else {
   console.log('Maior imc da segunda persoa');
 }
+
+// 1. Crea unha función que reciba como parámetro un prezo e unha porcentaxe de desconto. A función debe calcular o prezo final aplicado o desconto e devolver este valor.
+
+function prezoFinal(prezo, desconto) {
+  return (prezo - prezo * (desconto / 100)).toFixed(2);
+}
+
+let prezoInicial = 50;
+let descontoTotal = 50.5;
+console.log(
+  `Este é o prezo final de ${prezoInicial} e ${descontoTotal} : ${prezoFinal(
+    prezoInicial,
+    descontoTotal
+  )}`
+);
+prezoInicial = 123;
+descontoTotal = 8;
+console.log(
+  `Este é o prezo final de ${prezoInicial} e ${descontoTotal} : ${prezoFinal(
+    prezoInicial,
+    descontoTotal
+  )}`
+);
