@@ -239,10 +239,16 @@ console.log('------------------');
 function daysMonth(yearMonth) {
   let year = yearMonth.getFullYear();
   let month = yearMonth.getMonth();
+  let count = 0;
+  while (yearMonth.getMonth() == month) {
+    yearMonth.setDate() + 1;
+    count++;
+  }
+  console.log(`o mes ${month} do ano ${year} ten ${count} días`);
 }
 
 let yearMonth = new Date('August 19, 1975 23:15:30');
-
+daysMonth(yearMonth);
 console.log('----------------');
 
 // 3. Crea unha función á que se lle pase unha data e que devolva true se é fin de semana.
