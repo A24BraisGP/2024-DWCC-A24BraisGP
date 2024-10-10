@@ -288,7 +288,8 @@ function indexIndicator(searched, arrayIndexed) {
   let newArray = [];
   for (element of arrayIndexed) {
     if (element == searched) {
-      newArray.push(indexOf(element));
+      newArray.push(arrayIndexed.indexOf(element));
+      arrayIndexed[arrayIndexed.indexOf(element)] = '';
     }
   }
   return newArray;
@@ -308,9 +309,34 @@ console.log('--------------------');
 // c. Quita os kiwis e pon no seu lugar cereixas e nésperas.
 
 // Despois de realizar cada operación mostra por pantalla a lista de froitas do array separadas por unha coma e un espazo. Por exemplo, inicialmente o array debe mostrarse como “peras, mazás, kiwis, plátanos, mandarinas”.
+const froitas = ['peras', 'mazás', 'kiwis', 'plátanos', 'mandarinas'];
+
+console.log(froitas.join());
+
+console.log(froitas.splice(1, 1));
+console.log(`a. ${froitas.join()}`);
+console.log(froitas.splice(froitas.length, 0, 'laranxas', 'sandía'));
+
+console.log(`b. ${froitas.join()}`);
+console.log(froitas.splice(1, 1, 'cereixas', 'peras'));
+
+console.log(`c. ${froitas.join()}`);
 
 console.log('--------------------');
 
 // 3. Crea unha función á que se lle pase unha frase con varias palabras e devolva a mesma frase coa primeira letra de cada palabra en maiúsculas e o resto de letras en minúsculas
+
+function upperCased(arrayString) {
+  let newArrayString = [];
+  for (const element of arrayString) {
+    newArrayString.push(
+      element.replace(element.charAt(0), element.charAt(0).toUpperCase())
+    );
+  }
+  console.log(newArrayString.join(' '));
+}
+
+const arrayString = ['hola', 'buenos', 'días', 'que', 'tal'];
+upperCased(arrayString);
 
 console.log('--------------------');
