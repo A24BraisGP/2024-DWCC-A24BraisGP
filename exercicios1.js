@@ -124,8 +124,7 @@ console.log('------------------');
 // console.log(enmascarar(“1234123412347777”)); // ************7777
 
 function enmascarar(strNum) {
-  let strNumlen = strNum.length;
-  return strNum.slice(-4).padStart(strNumlen, '*');
+  return strNum.slice(-4).padStart(strNum.length, '*');
 }
 
 console.log(enmascarar('1234123412347777'));
@@ -138,7 +137,7 @@ console.log('--------Number---------');
 // propiedades e métodos dos obxectos vistos ata agora?
 
 function calcCrifas(numeroCif) {
-  return numeroCif.toString().length;
+  return numeroCif.toString().replaceAll(',', '').replaceAll('-', '').length;
 }
 console.log(calcCrifas(12345678));
 
@@ -201,3 +200,117 @@ console.log(calcAreaCirculo(5));
 console.log(calcPeriCirculo(5));
 
 console.log('----------------');
+
+console.log('--------Date-----------');
+
+// 1. Mostra o día da semana (en letra) do 25 de xullo do ano actual.
+
+let diaSemana = new Date(2024, 6, 25);
+console.log(diaSemana);
+
+switch (diaSemana.getDay()) {
+  case 0:
+    console.log('Domigo');
+    break;
+  case 1:
+    console.log('primeira feira');
+    break;
+  case 2:
+    console.log('segunda feira');
+    break;
+  case 3:
+    console.log('terça feira');
+    break;
+  case 4:
+    console.log('cuarta feira');
+    break;
+  case 5:
+    console.log('quinta feira');
+    break;
+  default:
+    console.log('sexta feira');
+    break;
+}
+
+console.log('------------------');
+
+// 2. Crea unha función á que se lle pase un mes (1-12) e un ano e devolva o número de días dese mes.
+
+function daysMonth(yearMonth) {
+  let year = yearMonth.getFullYear();
+  let month = yearMonth.getMonth();
+}
+
+let yearMonth = new Date('August 19, 1975 23:15:30');
+
+console.log('----------------');
+
+// 3. Crea unha función á que se lle pase unha data e que devolva true se é fin de semana.
+
+function isWeekend(dayWeek) {
+  if (dayWeek.getDay() == 0 || dayWeek.getDay() == 1) {
+    console.log('É findeeee');
+  } else {
+    console.log('Hai cole :(');
+  }
+}
+
+isWeekend(new Date('August 19, 1975 23:15:30'));
+isWeekend(new Date('August 24, 1975 23:15:30'));
+
+console.log('--------------');
+
+// 4. Crea unha función que reciba unha data como parámetro e devolva o número de días que pasaron dende que comezou o ano.
+
+function numDaysPassed(datePassed) {
+  let year = new Date(datePassed.getFullYear(), 0);
+  let day = datePassed.getDate();
+  console.log(year);
+  console.log(year.valueOf());
+
+  console.log(day);
+  let dayPass = datePassed.valueOf() - year.valueOf();
+  console.log(
+    `Pasaron : ${(dayPass / (1000 * 60 * 60 * 24)).toFixed(
+      0
+    )} días dende o comezo de ${year} ate ${datePassed}`
+  );
+}
+
+let datePassed = new Date('2004-7-24');
+numDaysPassed(datePassed);
+
+console.log('-----------Arrays-----------');
+
+// 1. Crea unha función que reciba un elemento e un array como parámetros. A función debe devolver un novo array que conteña os índices onde aparece ese elemento no array.
+
+function indexIndicator(searched, arrayIndexed) {
+  let newArray = [];
+  for (element of arrayIndexed) {
+    if (element == searched) {
+      newArray.push(indexOf(element));
+    }
+  }
+  return newArray;
+}
+
+const numeros = [1, 3, 5, 1, 4, 1, 6, 8, 10, 1];
+console.log(indexIndicator(1, numeros)); // (4) [0, 3, 5, 9]
+
+console.log('--------------------');
+
+// 2. Dado o array froitas (const froitas = ['peras', 'mazás', 'kiwis', 'plátanos', 'mandarinas'];) , fai os seguintes apartados co método splice:
+
+// a. Elimina as mazás.
+
+// b. Engade laranxas e sandía detrás dos plátanos,.
+
+// c. Quita os kiwis e pon no seu lugar cereixas e nésperas.
+
+// Despois de realizar cada operación mostra por pantalla a lista de froitas do array separadas por unha coma e un espazo. Por exemplo, inicialmente o array debe mostrarse como “peras, mazás, kiwis, plátanos, mandarinas”.
+
+console.log('--------------------');
+
+// 3. Crea unha función á que se lle pase unha frase con varias palabras e devolva a mesma frase coa primeira letra de cada palabra en maiúsculas e o resto de letras en minúsculas
+
+console.log('--------------------');
