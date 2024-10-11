@@ -153,12 +153,12 @@ console.log('-------Math---------');
 // mostrar un número aleatorio entre 5 e 10 (incluídos):
 // console.log(numeroAleatorio(5, 10));
 
-console.log(`a. ${Math.ceil(Math.random(3))}`);
+console.log(`a. ${Math.ceil(Math.random() * 3)}`);
 
-console.log(`b. ${Math.ceil(Math.random(3)) + 1}`);
+console.log(`b. ${Math.floor(Math.random() * 3 + 1)}`);
 
 function numRan(inicio, maximo) {
-  return Math.random() * (maximo - inicio) + inicio;
+  return Math.floor(Math.random() * (maximo - inicio + 1) + inicio);
 }
 console.log(`c. ${numRan(5, 10)}`);
 
@@ -205,7 +205,7 @@ console.log('--------Date-----------');
 
 // 1. Mostra o día da semana (en letra) do 25 de xullo do ano actual.
 
-let diaSemana = new Date(2024, 6, 25);
+let diaSemana = new Date('2024-7-25');
 console.log(diaSemana);
 
 switch (diaSemana.getDay()) {
@@ -236,23 +236,32 @@ console.log('------------------');
 
 // 2. Crea unha función á que se lle pase un mes (1-12) e un ano e devolva o número de días dese mes.
 
-function daysMonth(yearMonth) {
-  return new Date(
-    yearMonth.getFullYear(),
-    yearMonth.getMonth() + 1,
-    0
-  ).getDate();
+function daysMonth(year, month) {
+  return new Date(year, month, 0).getDate();
 }
 
-let yearMonth = new Date('2024-11-17');
-console.log(daysMonth(yearMonth));
+let yearMonth = new Date(2024, 2);
+console.log(
+  `O mes ${yearMonth.getMonth()} ten  ${daysMonth(
+    yearMonth.getFullYear(),
+    yearMonth.getMonth()
+  )} días`
+);
+yearMonth = new Date(2024, 10);
+console.log(
+  `O mes ${yearMonth.getMonth()} ten  ${daysMonth(
+    yearMonth.getFullYear(),
+    yearMonth.getMonth()
+  )} días`
+);
 console.log('----------------');
 
 // 3. Crea unha función á que se lle pase unha data e que devolva true se é fin de semana.
 
 function isWeekend(dayWeek) {
-  if (dayWeek.getDay() == 0 || dayWeek.getDay() == 1) {
+  if (dayWeek.getDay() == 0 || dayWeek.getDay() == 6) {
     console.log('É findeeee');
+    return true;
   } else {
     console.log('Hai cole :(');
   }
@@ -343,3 +352,78 @@ const arrayString = ['hola', 'buenos', 'días', 'que', 'tal'];
 upperCased(arrayString);
 
 console.log('--------------------');
+
+console.log('------- Desestruturación de Arrays -----');
+
+// 1. Imaxinar que se recolle a seguinte información relativa a un xogo dun servidor web:
+// Utilizando o contido aprendido sobre arrays, proporciona unha única sentencia
+// JavaScript para cada unha das seguintes instrucións:
+// a. Crea as variables players1, players2 que conteñan un array cos xogadores de cada equipo. Así, players1 terá os xogadores do primeiro equipo e players2 os do segundo equipo.
+
+const players = [
+  [
+    'Neuer',
+    'Pavard',
+    'Martinez',
+    'Alaba',
+    'Davies',
+    'Kimmich',
+    'Goretzka',
+    'Coman',
+    'Muller',
+    'Gnarby',
+    'Lewandowski',
+  ],
+  [
+    'Burki',
+    'Schulz',
+    'Hummels',
+    'Akanji',
+    'Hakimi',
+    'Weigl',
+    'Witsel',
+    'Hazard',
+    'Brandt',
+    'Sancho',
+    'Gotze',
+  ],
+];
+let players1, players2;
+[players1, players2] = [players[0], players[1]];
+console.log(players1, players2);
+
+// b. O primeiro xogador do array é o porteiro e o resto son xogadores de campo. Crea unha variable chamada gk que conteña o porteiro do primeiro equipo e unha variable de tipo array chamada fieldPlayers que conteña o resto de xogadores do equipo.
+
+let gk, fieldPlayers;
+
+[gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+
+// c. Crea un array allPlayers que conteña os xogadores dos dous equipos.
+
+let allPlayers = players.slice();
+console.log(allPlayers);
+
+// d. O primeiro equipo substituíu os xogadores iniciais por 'Thiago', 'Coutinho','Periscic'. Crea unha nova variable de tipo array chamada players1Final que conteña todos os xogadores: os iniciais e tamén os 3 novos.
+
+let players1Final;
+players1Final = [...players1, 'Thiago', 'Coutinho', 'Pulisic'];
+
+console.log(players1Final);
+
+console.log('--------------------');
+
+// 2. Dado un array con nomes de variables formados por dúas palabras separadas por “_”, fai as operacións necesarias para mostrar por consola os nomes das variables en formato camelCase. Por exemplo, se o array de entrada é ["first_name”, “last_NAME”], deberase mostrar por consola “firtsName” e “lastName”.
+
+let arrayCamel = ['variable_uno', 'variable_dos'];
+
+let variableuno, variabledos;
+[variableuno, variabledos] = arrayCamel;
+function toCamelCase(variable) {
+  let vCamel = variable.toLowerCase().slice('_');
+  vCamel.at(1).charAt(0).toUpperCase();
+  console.log(vCamel);
+
+  return vCamel;
+}
+console.log(toCamelCase(variableuno));
