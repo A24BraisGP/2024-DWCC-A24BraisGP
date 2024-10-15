@@ -299,11 +299,17 @@ console.log('-----------Arrays-----------');
 function indexIndicator(searched, arrayIndexed) {
   let newArray = [];
   for (element of arrayIndexed) {
-    if (element == searched) {
+    if (element === searched) {
       newArray.push(arrayIndexed.indexOf(element));
       arrayIndexed[arrayIndexed.indexOf(element)] = '';
     }
   }
+
+  // let index = newArray.indexOf(searched);
+  // while (index != -1) {
+  //   newArray.push(index);
+  //   index = newArray.indexOf(searched, index + 1);
+  // }
   return newArray;
 }
 
@@ -326,30 +332,33 @@ const froitas = ['peras', 'mazás', 'kiwis', 'plátanos', 'mandarinas'];
 console.log(froitas.join());
 
 console.log(froitas.splice(1, 1));
-console.log(`a. ${froitas.join()}`);
-console.log(froitas.splice(froitas.length, 0, 'laranxas', 'sandía'));
+console.log(`a. ${froitas.join(', ')}`);
 
-console.log(`b. ${froitas.join()}`);
+console.log(
+  froitas.splice(froitas.indexOf('platanos') - 1, 0, 'laranxas', 'sandía')
+);
+console.log(`b. ${froitas.join(', ')}`);
+
 console.log(froitas.splice(1, 1, 'cereixas', 'peras'));
-
-console.log(`c. ${froitas.join()}`);
+console.log(`c. ${froitas.join(', ')}`);
 
 console.log('--------------------');
 
 // 3. Crea unha función á que se lle pase unha frase con varias palabras e devolva a mesma frase coa primeira letra de cada palabra en maiúsculas e o resto de letras en minúsculas
 
 function upperCased(arrayString) {
-  let newArrayString = [];
-  for (const element of arrayString) {
-    newArrayString.push(
+  let newArrayString = arrayString.split(' ');
+  let saida = [];
+  for (const element of newArrayString) {
+    saida.push(
       element.replace(element.charAt(0), element.charAt(0).toUpperCase())
     );
   }
-  console.log(newArrayString.join(' '));
+  return saida.join(' ');
 }
 
-const arrayString = ['hola', 'buenos', 'días', 'que', 'tal'];
-upperCased(arrayString);
+const arrayString = 'hola buenos días que tal';
+console.log(upperCased(arrayString));
 
 console.log('--------------------');
 
@@ -389,7 +398,7 @@ const players = [
   ],
 ];
 let players1, players2;
-[players1, players2] = [players[0], players[1]];
+[players1, players2] = players;
 console.log(players1, players2);
 
 // b. O primeiro xogador do array é o porteiro e o resto son xogadores de campo. Crea unha variable chamada gk que conteña o porteiro do primeiro equipo e unha variable de tipo array chamada fieldPlayers que conteña o resto de xogadores do equipo.
@@ -415,15 +424,37 @@ console.log('--------------------');
 
 // 2. Dado un array con nomes de variables formados por dúas palabras separadas por “_”, fai as operacións necesarias para mostrar por consola os nomes das variables en formato camelCase. Por exemplo, se o array de entrada é ["first_name”, “last_NAME”], deberase mostrar por consola “firtsName” e “lastName”.
 
-let arrayCamel = ['variable_uno', 'variable_dos'];
+function toCamelCase(arrayCamel) {
+  let first, second;
+  for (const element of arrayCamel) {
+    [first, second] = element.toLowerCase().split('_');
+    // second = second.charAt(0).toUpperCase() + second.slice(1);
+    // console.log(first + second);
 
-let variableuno, variabledos;
-[variableuno, variabledos] = arrayCamel;
-function toCamelCase(variable) {
-  let vCamel = variable.toLowerCase().slice('_');
-  vCamel.at(1).charAt(0).toUpperCase();
-  console.log(vCamel);
-
-  return vCamel;
+    console.log(
+      `${first}${second.replace(second[0], second[0].toUpperCase())}`
+    );
+  }
 }
-console.log(toCamelCase(variableuno));
+
+toCamelCase(['first_name', 'second_name']);
+
+console.log('--------------------------');
+
+// 3. Escribe o código necesario para procesar unha cadea con información de voos como a do exemplo e mostrar a información por consola formateada como aparece na imaxe:
+
+const flightsInfo =
+  '_Delayed_Departure;scq93766109;bio2133758440;11:25+_Arrival;bio0943384722;scq93766109;11:45+_Delayed_Arrival;vq7439299980;cq93766109;12:05+_Departure;scq93766109;svq2323639855;12:30';
+
+function getCode(str) {
+  return str.slice(0, 3).toUpperCase();
+}
+
+for (const flight of flightsInfo.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+
+  const output = `${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(
+    to
+  )} (${time.replace(':', 'h')})`;
+  console.log(output.padStart(40));
+}
