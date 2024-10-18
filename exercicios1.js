@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 // // 1. Crea unha variable que almacene un día da semana de luns a domingo. En función
 // // do valor da variable mostra unha mensaxe indicando se o día é laborable ou non.
 
@@ -112,8 +112,8 @@ console.log('------------------');
 // console.log(reverseString("I am a string")) // gnirts a ma I
 
 function reverseString(str) {
-  let newStr = str.split('').reverse().join('');
-  return newStr;
+	let newStr = str.split('').reverse().join('');
+	return newStr;
 }
 
 console.log(reverseString('Dabale arroz'));
@@ -124,7 +124,7 @@ console.log('------------------');
 // console.log(enmascarar(“1234123412347777”)); // ************7777
 
 function enmascarar(strNum) {
-  return strNum.slice(-4).padStart(strNum.length, '*');
+	return strNum.slice(-4).padStart(strNum.length, '*');
 }
 
 console.log(enmascarar('1234123412347777'));
@@ -137,7 +137,7 @@ console.log('--------Number---------');
 // propiedades e métodos dos obxectos vistos ata agora?
 
 function calcCrifas(numeroCif) {
-  return numeroCif.toString().replaceAll(',', '').replaceAll('-', '').length;
+	return numeroCif.toString().replaceAll(',', '').replaceAll('-', '').length;
 }
 console.log(calcCrifas(12345678));
 
@@ -158,7 +158,7 @@ console.log(`a. ${Math.ceil(Math.random() * 3)}`);
 console.log(`b. ${Math.floor(Math.random() * 3 + 1)}`);
 
 function numRan(inicio, maximo) {
-  return Math.floor(Math.random() * (maximo - inicio + 1) + inicio);
+	return Math.floor(Math.random() * (maximo - inicio + 1) + inicio);
 }
 console.log(`c. ${numRan(5, 10)}`);
 
@@ -168,16 +168,16 @@ console.log('-------------');
 // devolva un string indicando a súa equivalencia en horas e minutos.
 
 function calcHoras(mins) {
-  let horas = 0;
-  for (let i = 0; i < mins; i++) {
-    if (mins > 59) {
-      horas++;
-      mins = mins - 60;
-    } else if (mins < 59) {
-      break;
-    }
-  }
-  return `Horas: ${horas} + Minutos : ${mins}`;
+	let horas = 0;
+	for (let i = 0; i < mins; i++) {
+		if (mins > 59) {
+			horas++;
+			mins = mins - 60;
+		} else if (mins < 59) {
+			break;
+		}
+	}
+	return `Horas: ${horas} + Minutos : ${mins}`;
 }
 
 console.log(calcHoras(360));
@@ -189,11 +189,11 @@ console.log('--------------');
 // resultado das funcións usando dúas cifras decimais
 
 function calcAreaCirculo(radio) {
-  return `La area del círculo es: ${(Math.PI * Math.pow(radio, 2)).toFixed(2)}`;
+	return `La area del círculo es: ${(Math.PI * Math.pow(radio, 2)).toFixed(2)}`;
 }
 
 function calcPeriCirculo(radio) {
-  return `El perímetro del círculo es: ${(2 * Math.PI * radio).toFixed(2)}`;
+	return `El perímetro del círculo es: ${(2 * Math.PI * radio).toFixed(2)}`;
 }
 
 console.log(calcAreaCirculo(5));
@@ -209,27 +209,27 @@ let diaSemana = new Date('2024-7-25');
 console.log(diaSemana);
 
 switch (diaSemana.getDay()) {
-  case 0:
-    console.log('Domigo');
-    break;
-  case 1:
-    console.log('primeira feira');
-    break;
-  case 2:
-    console.log('segunda feira');
-    break;
-  case 3:
-    console.log('terça feira');
-    break;
-  case 4:
-    console.log('cuarta feira');
-    break;
-  case 5:
-    console.log('quinta feira');
-    break;
-  default:
-    console.log('sexta feira');
-    break;
+	case 0:
+		console.log('Domigo');
+		break;
+	case 1:
+		console.log('primeira feira');
+		break;
+	case 2:
+		console.log('segunda feira');
+		break;
+	case 3:
+		console.log('terça feira');
+		break;
+	case 4:
+		console.log('cuarta feira');
+		break;
+	case 5:
+		console.log('quinta feira');
+		break;
+	default:
+		console.log('sexta feira');
+		break;
 }
 
 console.log('------------------');
@@ -237,34 +237,34 @@ console.log('------------------');
 // 2. Crea unha función á que se lle pase un mes (1-12) e un ano e devolva o número de días dese mes.
 
 function daysMonth(year, month) {
-  return new Date(year, month, 0).getDate();
+	return new Date(year, month, 0).getDate();
 }
 
 let yearMonth = new Date(2024, 2);
 console.log(
-  `O mes ${yearMonth.getMonth()} ten  ${daysMonth(
-    yearMonth.getFullYear(),
-    yearMonth.getMonth()
-  )} días`
+	`O mes ${yearMonth.getMonth()} ten  ${daysMonth(
+		yearMonth.getFullYear(),
+		yearMonth.getMonth()
+	)} días`
 );
 yearMonth = new Date(2024, 10);
 console.log(
-  `O mes ${yearMonth.getMonth()} ten  ${daysMonth(
-    yearMonth.getFullYear(),
-    yearMonth.getMonth()
-  )} días`
+	`O mes ${yearMonth.getMonth()} ten  ${daysMonth(
+		yearMonth.getFullYear(),
+		yearMonth.getMonth()
+	)} días`
 );
 console.log('----------------');
 
 // 3. Crea unha función á que se lle pase unha data e que devolva true se é fin de semana.
 
 function isWeekend(dayWeek) {
-  if (dayWeek.getDay() == 0 || dayWeek.getDay() == 6) {
-    console.log('É findeeee');
-    return true;
-  } else {
-    console.log('Hai cole :(');
-  }
+	if (dayWeek.getDay() == 0 || dayWeek.getDay() == 6) {
+		console.log('É findeeee');
+		return true;
+	} else {
+		console.log('Hai cole :(');
+	}
 }
 
 isWeekend(new Date('August 19, 1975 23:15:30'));
@@ -275,18 +275,18 @@ console.log('--------------');
 // 4. Crea unha función que reciba unha data como parámetro e devolva o número de días que pasaron dende que comezou o ano.
 
 function numDaysPassed(datePassed) {
-  let year = new Date(datePassed.getFullYear(), 0);
-  let day = datePassed.getDate();
-  console.log(year);
-  console.log(year.valueOf());
+	let year = new Date(datePassed.getFullYear(), 0);
+	let day = datePassed.getDate();
+	console.log(year);
+	console.log(year.valueOf());
 
-  console.log(day);
-  let dayPass = datePassed.valueOf() - year.valueOf();
-  console.log(
-    `Pasaron : ${(dayPass / (1000 * 60 * 60 * 24)).toFixed(
-      0
-    )} días dende o comezo de ${year} ate ${datePassed}`
-  );
+	console.log(day);
+	let dayPass = datePassed.valueOf() - year.valueOf();
+	console.log(
+		`Pasaron : ${(dayPass / (1000 * 60 * 60 * 24)).toFixed(
+			0
+		)} días dende o comezo de ${year} ate ${datePassed}`
+	);
 }
 
 let datePassed = new Date('2004-7-24');
@@ -297,20 +297,20 @@ console.log('-----------Arrays-----------');
 // 1. Crea unha función que reciba un elemento e un array como parámetros. A función debe devolver un novo array que conteña os índices onde aparece ese elemento no array.
 
 function indexIndicator(searched, arrayIndexed) {
-  let newArray = [];
-  for (element of arrayIndexed) {
-    if (element === searched) {
-      newArray.push(arrayIndexed.indexOf(element));
-      arrayIndexed[arrayIndexed.indexOf(element)] = '';
-    }
-  }
+	let newArray = [];
+	for (const element of arrayIndexed) {
+		if (element === searched) {
+			newArray.push(arrayIndexed.indexOf(element));
+			arrayIndexed[arrayIndexed.indexOf(element)] = '';
+		}
+	}
 
-  // let index = newArray.indexOf(searched);
-  // while (index != -1) {
-  //   newArray.push(index);
-  //   index = newArray.indexOf(searched, index + 1);
-  // }
-  return newArray;
+	// let index = newArray.indexOf(searched);
+	// while (index != -1) {
+	//   newArray.push(index);
+	//   index = newArray.indexOf(searched, index + 1);
+	// }
+	return newArray;
 }
 
 const numeros = [1, 3, 5, 1, 4, 1, 6, 8, 10, 1];
@@ -335,7 +335,7 @@ console.log(froitas.splice(1, 1));
 console.log(`a. ${froitas.join(', ')}`);
 
 console.log(
-  froitas.splice(froitas.indexOf('platanos') - 1, 0, 'laranxas', 'sandía')
+	froitas.splice(froitas.indexOf('platanos') - 1, 0, 'laranxas', 'sandía')
 );
 console.log(`b. ${froitas.join(', ')}`);
 
@@ -347,14 +347,14 @@ console.log('--------------------');
 // 3. Crea unha función á que se lle pase unha frase con varias palabras e devolva a mesma frase coa primeira letra de cada palabra en maiúsculas e o resto de letras en minúsculas
 
 function upperCased(arrayString) {
-  let newArrayString = arrayString.split(' ');
-  let saida = [];
-  for (const element of newArrayString) {
-    saida.push(
-      element.replace(element.charAt(0), element.charAt(0).toUpperCase())
-    );
-  }
-  return saida.join(' ');
+	let newArrayString = arrayString.split(' ');
+	let saida = [];
+	for (const element of newArrayString) {
+		saida.push(
+			element.replace(element.charAt(0), element.charAt(0).toUpperCase())
+		);
+	}
+	return saida.join(' ');
 }
 
 const arrayString = 'hola buenos días que tal';
@@ -370,32 +370,32 @@ console.log('------- Desestruturación de Arrays -----');
 // a. Crea as variables players1, players2 que conteñan un array cos xogadores de cada equipo. Así, players1 terá os xogadores do primeiro equipo e players2 os do segundo equipo.
 
 const players = [
-  [
-    'Neuer',
-    'Pavard',
-    'Martinez',
-    'Alaba',
-    'Davies',
-    'Kimmich',
-    'Goretzka',
-    'Coman',
-    'Muller',
-    'Gnarby',
-    'Lewandowski',
-  ],
-  [
-    'Burki',
-    'Schulz',
-    'Hummels',
-    'Akanji',
-    'Hakimi',
-    'Weigl',
-    'Witsel',
-    'Hazard',
-    'Brandt',
-    'Sancho',
-    'Gotze',
-  ],
+	[
+		'Neuer',
+		'Pavard',
+		'Martinez',
+		'Alaba',
+		'Davies',
+		'Kimmich',
+		'Goretzka',
+		'Coman',
+		'Muller',
+		'Gnarby',
+		'Lewandowski',
+	],
+	[
+		'Burki',
+		'Schulz',
+		'Hummels',
+		'Akanji',
+		'Hakimi',
+		'Weigl',
+		'Witsel',
+		'Hazard',
+		'Brandt',
+		'Sancho',
+		'Gotze',
+	],
 ];
 let players1, players2;
 [players1, players2] = players;
@@ -425,16 +425,16 @@ console.log('--------------------');
 // 2. Dado un array con nomes de variables formados por dúas palabras separadas por “_”, fai as operacións necesarias para mostrar por consola os nomes das variables en formato camelCase. Por exemplo, se o array de entrada é ["first_name”, “last_NAME”], deberase mostrar por consola “firtsName” e “lastName”.
 
 function toCamelCase(arrayCamel) {
-  let first, second;
-  for (const element of arrayCamel) {
-    [first, second] = element.toLowerCase().split('_');
-    // second = second.charAt(0).toUpperCase() + second.slice(1);
-    // console.log(first + second);
+	let first, second;
+	for (const element of arrayCamel) {
+		[first, second] = element.toLowerCase().split('_');
+		// second = second.charAt(0).toUpperCase() + second.slice(1);
+		// console.log(first + second);
 
-    console.log(
-      `${first}${second.replace(second[0], second[0].toUpperCase())}`
-    );
-  }
+		console.log(
+			`${first}${second.replace(second[0], second[0].toUpperCase())}`
+		);
+	}
 }
 
 toCamelCase(['first_name', 'second_name']);
@@ -444,19 +444,19 @@ console.log('--------------------------');
 // 3. Escribe o código necesario para procesar unha cadea con información de voos como a do exemplo e mostrar a información por consola formateada como aparece na imaxe:
 
 const flightsInfo =
-  '_Delayed_Departure;scq93766109;bio2133758440;11:25+_Arrival;bio0943384722;scq93766109;11:45+_Delayed_Arrival;vq7439299980;cq93766109;12:05+_Departure;scq93766109;svq2323639855;12:30';
+	'_Delayed_Departure;scq93766109;bio2133758440;11:25+_Arrival;bio0943384722;scq93766109;11:45+_Delayed_Arrival;vq7439299980;cq93766109;12:05+_Departure;scq93766109;svq2323639855;12:30';
 
 function getCode(str) {
-  return str.slice(0, 3).toUpperCase();
+	return str.slice(0, 3).toUpperCase();
 }
 
 for (const flight of flightsInfo.split('+')) {
-  const [type, from, to, time] = flight.split(';');
+	const [type, from, to, time] = flight.split(';');
 
-  const output = `${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(
-    to
-  )} (${time.replace(':', 'h')})`;
-  console.log(output.padStart(40));
+	const output = `${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(
+		to
+	)} (${time.replace(':', 'h')})`;
+	console.log(output.padStart(40));
 }
 
 console.log('--------------Obxectos --------');
@@ -464,12 +464,13 @@ console.log('--------------Obxectos --------');
 // 1. Crea un obxecto chamado television coas propiedades marca, categoría (televisores), unidades (4), prezo (354.99) e un método chamado importe que devolva o prezo total das unidades (unidades x prezo).
 
 const television = {
-  marca: 'Samsung',
-  unidades: 4,
-  prezo: 354.99,
-  importe() {
-    return this.prezo * this.unidades;
-  },
+	marca: 'Samsung',
+	categoria: 'televisores',
+	unidades: 4,
+	prezo: 354.99,
+	importe() {
+		return this.prezo * this.unidades;
+	},
 };
 console.log(television.importe());
 
@@ -489,15 +490,15 @@ console.log('-----------------');
 // ● team2: debe inicializarse co valor da propiedade team2 do obxecto inicial.
 
 const game = {
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
+	odds: {
+		team1: 1.33,
+		x: 3.25,
+		team2: 6.5,
+	},
 };
 
 const {
-  odds: { team1, x: draw, team2 },
+	odds: { team1, x: draw, team2 },
 } = game;
 console.log(team1, draw, team2);
 
@@ -512,12 +513,12 @@ console.log('-----------------');
 // b. Crea un novo obxecto chamado scorers que conteña como propiedades o nome dos xogadores que marcaron e como valor o número de goles que marcaron respectivamente. Neste exemplo sería algo así: {Lewandowski: 2, Gnarby: 1, Hummels: 1}
 
 const gameFootball = {
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+	scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
 };
 console.log('a: ');
 
 for (const [key, value] of gameFootball.scored.entries()) {
-  console.log(`Gol ${key + 1}: ${value} `);
+	console.log(`Gol ${key + 1}: ${value} `);
 }
 
 console.log('b: ');
@@ -525,13 +526,16 @@ console.log('b: ');
 
 const scorers = {};
 
-for (const element of gameFootball.scored.values()) {
-  if (scorers.hasOwnProperty([element])) {
-    scorers[element] = scorers[element] + 1;
-  } else {
-    scorers[element] = 1;
-  }
+for (const element of Object.values(gameFootball.scored)) {
+	// if (scorers.hasOwnProperty([element])) {
+	//   scorers[element] = scorers[element] + 1;
+	// } else {
+	//   scorers[element] = 1;
+	// }
+
+	scorers[element] ? scorers[element]++ : (scorers[element] = 1);
 }
+
 console.log(scorers);
 
 console.log('-------Set e Map-------------');
@@ -555,30 +559,32 @@ console.log('-------Set e Map-------------');
 // b. Recorre con un bucle o mapa gameEvents e mostra información de cada evento, indicando se ocorreu na primeira metade ou na segunda metade do partido, por exemplo: [PRIMEIRA PARTE] 17: GOAL.
 
 const gameEvents = new Map([
-  [17, 'GOAL'],
-  [36, 'Substitution'],
-  [47, 'GOAL'],
-  [61, 'Substitution'],
-  [64, 'Yellow card'],
-  [69, 'Red card'],
-  [70, 'Substitution'],
-  [72, 'Substitution'],
-  [76, 'GOAL'],
-  [80, 'GOAL'],
-  [92, 'Yellow card'],
+	[17, 'GOAL'],
+	[36, 'Substitution'],
+	[47, 'GOAL'],
+	[61, 'Substitution'],
+	[64, 'Yellow card'],
+	[69, 'Red card'],
+	[70, 'Substitution'],
+	[72, 'Substitution'],
+	[76, 'GOAL'],
+	[80, 'GOAL'],
+	[92, 'Yellow card'],
 ]);
 
 console.log('a: ');
 
-const eventos = new Set(gameEvents.values());
+const eventos = Array.from(new Set(gameEvents.values()));
+// const eventos2 = [...new Set(gameEvents.values())];
+
 console.log(eventos);
 
 console.log('b: ');
 
 for (const [minuto, evento] of gameEvents) {
-  if (minuto < 45) {
-    console.log(`En el minuto: ${minuto} de la primera parte: ${evento}`);
-  } else {
-    console.log(`En el minuto: ${minuto} de la segunda parte: ${evento}`);
-  }
+	console.log(
+		`En el minuto ${minuto} de la ${
+			minuto <= 45 ? 'primera' : 'segunda'
+		} parte: ${evento}`
+	);
 }
