@@ -189,7 +189,9 @@ console.log('--------------');
 // resultado das funcións usando dúas cifras decimais
 
 function calcAreaCirculo(radio) {
-	return `La area del círculo es: ${(Math.PI * Math.pow(radio, 2)).toFixed(2)}`;
+	return `La area del círculo es: ${(Math.PI * Math.pow(radio, 2)).toFixed(
+		2
+	)}`;
 }
 
 function calcPeriCirculo(radio) {
@@ -588,3 +590,151 @@ for (const [minuto, evento] of gameEvents) {
 		} parte: ${evento}`
 	);
 }
+
+//
+console.log('--------Funcións----------');
+//
+// 1. Crea unha función frecha que devolva o cubo dun número pasado como parámetro.
+
+const cubeNumer = (numberToCube) => numberToCube * numberToCube * numberToCube;
+
+console.log(cubeNumer(6));
+console.log('----------------------');
+
+// 2. Crea unha función frecha á que se lle pase un array e devolva como resultado un array cos elementos impares do array de entrada.
+
+const arrayEntrada = [10, 2, 3, 5, 7, 8, 23, 50];
+
+const numerosImpares = (arrayAll) => {
+	const arraySalida = [];
+	for (const element in arrayAll) {
+		if (arrayAll[element] % 2 != 0) {
+			arraySalida.push(arrayAll[element]);
+		}
+	}
+	return arraySalida;
+};
+
+console.log(numerosImpares(arrayEntrada)); // (4) [3, 5, 7, 23]
+
+// 3. Crea unha función frecha que sume todos os valores pasados como parámetros, sendo estes un número indeterminado.
+
+const sumaRest = (...array) => {
+	let sumTotal = 0;
+	console.log(array);
+
+	for (const numeros of array) {
+		sumTotal += parseInt(numeros);
+	}
+	return sumTotal;
+};
+
+console.log(sumaRest(1, 2, 3, 4, 5, 6, 7));
+console.log('----------------------');
+
+// 4. Crea unha función á que se lle pasen varios números como parámetros (un número indeterminado de parámetros) e que devolva a media deses números.
+
+function mediaNumeros(...array) {
+	let sumTotal = 0;
+
+	for (const numero of array) {
+		sumTotal += parseInt(numero);
+	}
+
+	return sumTotal / array.length;
+}
+
+console.log(mediaNumeros(1, 2, 3, 4, 5, 6, 7));
+
+// 5. Crea unha función frecha chamada minMax() que reciba como parámetro un array de números e devolva un obxecto co valor mínimo e máximo do array de entrada:
+// console.log(minMax([1, 2, 3, 4, 5])); // Debe devolver { min: 1, max: 5 }
+
+const minMax = (numArray) => {
+	numArray.sort((a, b) => a - b);
+	let min = numArray[0];
+	let max = numArray[numArray.length - 1];
+	return {
+		minimo: min,
+		maximo: max,
+	};
+};
+
+console.log(minMax([12, 4, 1, 2, 3, 4, 5, -1])); // Debe devolver { min: 1, max: 5 }
+
+console.log('---------------');
+
+// 6. Crea unha función autoinvocada á que se lle pase a lonxitude e ancho dun rectángulo. A función debe mostrar por consola unha mensaxe indicando o valor da área do rectángulo.
+
+(function rectData(lonxitude = 100, ancho = 78) {
+	console.log(`A lonxitude é ${lonxitude} e o ancho é ${ancho}`);
+})();
+
+// 7. Crea unha función á que se lle pase un DNI (ex: 12345678w ou 87654321T) e devolva se é correcto ou non.
+
+function dniCheck(dni) {
+	const dniLetter = [
+		't',
+		'r',
+		'w',
+		'a',
+		'g',
+		'm',
+		'y',
+		'f',
+		'p',
+		'd',
+		'x',
+		'b',
+		'n',
+		'j',
+		'z',
+		's',
+		'q',
+		'v',
+		'h',
+		'l',
+		'c',
+		'k',
+		'e',
+	];
+	let dniNum = parseInt(dni.slice(0, 8));
+
+	let dniRest = dniNum % 23;
+
+	let result;
+	if (
+		dniRest <= 22 &&
+		dni[dni.length - 1].toLowerCase() == dniLetter[dniRest]
+	) {
+		result = 'dni válido';
+	} else result = 'dni non válido';
+	return result;
+}
+console.log(dniCheck('87654321T'));
+console.log(dniCheck('44093993A'));
+console.log(dniCheck('12345678w'));
+
+console.log('--------------');
+
+//8. Crea unha función que reciba como parámetro unha cantidade enteira e faga o desglose do número de billetes e moedas necesarios para obtela. Debe usarse o número mínimo de billetes e moedas.
+
+const calcDesglose = (euros) => {
+	let count = 0;
+};
+
+// 9. Crea unha función chamada buscarPatron(texto, patron) que reciba como parámetros un texto e un patrón. A función debe devolver como resultado o número de veces que aparece o patrón no texto, tendo en conta que un carácter pode formar parte de máis dun patrón encontrado.
+// Debe implementarse a función de forma manual sen utilizar as funcións proporcionadas pola linguaxe JavaScript para buscar en cadeas. Non se deben distinguir maiúsculas de minúsculas.
+//Exemplo: buscarPatron(“000111101000ABCHA”, “00”) debe devolver 4.
+
+function buscarPatron(texto, patron) {
+	let patronCount = patron.slice('').length;
+	let count = 0;
+	for (const element of texto.slice('')) {
+		if (texto.at(element) + texto.at(element + patronCount) != patron) {
+			count++;
+		}
+	}
+	return count;
+}
+
+console.log(buscarPatron('000111101000ABCHA', '00'));
