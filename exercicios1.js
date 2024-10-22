@@ -717,24 +717,113 @@ console.log(dniCheck('12345678w'));
 console.log('--------------');
 
 //8. Crea unha función que reciba como parámetro unha cantidade enteira e faga o desglose do número de billetes e moedas necesarios para obtela. Debe usarse o número mínimo de billetes e moedas.
-
+const arrayBilletes = [500, 200, 100, 50, 20, 10, 5];
+const arrayMonedas = [2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
 const calcDesglose = (euros) => {
-	let count = 0;
+	if (euros < 0) return console.log('Te deben pasta');
+	for (const valor of arrayBilletes) {
+		if (euros >= valor) {
+			console.log(
+				`El número mínimo de billetes de ${valor} es ${Math.floor(
+					euros / valor
+				)}`
+			);
+			euros = euros % valor;
+		}
+	}
+
+	for (const valor of arrayMonedas) {
+		if (euros >= valor) {
+			console.log(
+				`El número mínimo de monedas de ${valor} es ${Math.floor(
+					euros / valor
+				)}`
+			);
+			euros = euros % valor;
+		}
+	}
 };
+calcDesglose(90);
+calcDesglose(206);
+calcDesglose(-2);
+
+console.log('----------------');
 
 // 9. Crea unha función chamada buscarPatron(texto, patron) que reciba como parámetros un texto e un patrón. A función debe devolver como resultado o número de veces que aparece o patrón no texto, tendo en conta que un carácter pode formar parte de máis dun patrón encontrado.
 // Debe implementarse a función de forma manual sen utilizar as funcións proporcionadas pola linguaxe JavaScript para buscar en cadeas. Non se deben distinguir maiúsculas de minúsculas.
 //Exemplo: buscarPatron(“000111101000ABCHA”, “00”) debe devolver 4.
 
 function buscarPatron(texto, patron) {
-	let patronCount = patron.slice('').length;
-	let count = 0;
+	let countPatron = 0;
+	let patronCachos = patron.slice('');
 	for (const element of texto.slice('')) {
-		if (texto.at(element) + texto.at(element + patronCount) != patron) {
-			count++;
-		}
 	}
-	return count;
+	return countPatron;
 }
 
-console.log(buscarPatron('000111101000ABCHA', '00'));
+buscarPatron('000111101000ABCHA', '00'); // 4
+buscarPatron('000111101000ABCHA', '11'); // 4
+
+console.log('------------------');
+
+// 10. Crea unha función JavaScript que comprobe se é posible axendar unha reunión dentro do horario laboral.
+
+// A estrutura da función e do programa proporciónanse a continuación. O seguinte código inclúe comprobacións con assert, que mostrarán por pantalla unha mensaxe en caso de que a aserción sexa falsa. É dicir, se a comprobación é correcta, o programa non mostrará ningunha mensaxe:
+
+const inicioXornada = '07:30';
+const finalXornada = '17:45';
+
+function axendarReunion(horaInicioReunion, duracionEnMinutos) {
+	let reunionPosible = false;
+	let inicioReunionHora = parseInt(horaInicioReunion.slice(':'));
+	let reunionMinutos = parseInt(horaInicioReunion.slice(':'));
+	console.log(inicioReunionHora);
+	console.log(reunionMinutos);
+
+	// if (inicioReunionHora >= 7 && reunionMinutos >= 30) {
+	// 	if (!inicioReunionHora > 17) {
+	// 		if (!(inicioReunionHora == 17 && duracionEnMinutos > 45)) {
+	// 			if (
+	// 				reunionMinutos + duracionEnMinutos > 60 &&
+	// 				inicioReunionHora + 1 > 17
+	// 			) {
+	// 				reunionPosible = false;
+	// 			} else reunionPosible = true;
+	// 		}
+	// 	}
+	// }
+	return reunionPosible;
+}
+// Comprobacións
+console.assert(
+	axendarReunion('7:00', 15) == false,
+	'Fallo comprobando axendarReunión("7:00", 15) == false'
+);
+console.assert(
+	axendarReunion('7:15', 30) == false,
+	'Fallo comprobando axendarReunión("7:15", 30) == false'
+);
+console.assert(
+	axendarReunion('7:30', 30) == true,
+	'Fallo comprobando axendarReunión("7:30", 30) == true'
+);
+console.assert(
+	axendarReunion('11:30', 60) == true,
+	'Fallo comprobando axendarReunion("11:30", 60) == true'
+);
+console.assert(
+	axendarReunion('17:00', 45) == true,
+	'Fallo comprobando axendarReunion("17:00", 45) == true'
+);
+console.assert(
+	axendarReunion('17:30', 30) == false,
+	'Fallo comprobando axendarReunion("17:30", 30) == false'
+);
+
+// 11. Crea unha función que reciba un array bidimensional de lonxitude variable que se corresponda cun escenario do xogo de Buscaminas. Este array almacenará un -1 nas posicións onde hai minas e un 0 en caso contrario. A función debe devolver un array bidimensional onde cada posición que non teña mina, debe ter a información do número de minas adxacentes (diagonal, horizontal e vertical).
+
+// Exemplo:
+// arrayEntrada = [[0, 0, -1, 0],
+// [0, -1, -1, 0]];
+// arraySaida = [[1, 3, -1, 2],
+// [1, -1, -1, 2]];
