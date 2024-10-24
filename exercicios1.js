@@ -128,6 +128,9 @@
 // }
 
 // console.log(enmascarar('1234123412347777'));
+// const strNum2 = '1234123412347777';
+// console.log(enmascarar(strNum2));
+// console.log(strNum2);
 
 // console.log('------------------');
 
@@ -676,7 +679,6 @@
 
 // // 7. Crea unha función á que se lle pase un DNI (ex: 12345678w ou 87654321T) e devolva se é correcto ou non.
 
-// function dniCheck(dni) {
 // 	const dniLetter = [
 // 		't',
 // 		'r',
@@ -702,6 +704,8 @@
 // 		'k',
 // 		'e',
 // 	];
+
+// function dniCheck(dni) {
 // 	let dniNum = parseInt(dni.slice(0, 8));
 
 // 	let dniRest = dniNum % 23;
@@ -760,10 +764,20 @@
 
 // function buscarPatron(texto, patron) {
 // 	let countPatron = 0;
+// 	let patronPass = 1;
 // 	for (let i = 0; i < texto.length; i++) {
 // 		if (texto[i] == patron[0]) {
-// 			if (texto[i + 1] == patron[1]) {
+// 			for (let j = 0; j < patron.length; j++) {
+// 				if (texto[i + patronPass] == patron[j + 1]) {
+// 					patronPass++;
+// 					continue;
+// 				} else {
+// 					break;
+// 				}
+// 			}
+// 			if (patronPass == patron.length) {
 // 				countPatron++;
+// 				patronPass = 1;
 // 			}
 // 		}
 // 	}
@@ -775,6 +789,7 @@
 // buscarPatron('000111101000ABCHA', '00'); // 4
 // buscarPatron('000111101000ABCHA', '11'); // 4
 // buscarPatron('000111101000ABCHA', 'AB'); // 4
+// buscarPatron('000111101000ABCHA', '00'); // 4
 
 // console.log('------------------');
 
@@ -855,37 +870,48 @@
 
 // console.log('------------------');
 
+// Conversión a tipos máis comprensibles que faciliten as mates (Unha hora son 60 minutos, ás 7 am * 60 sempre da a mesma)
+
 // // // 11. Crea unha función que reciba un array bidimensional de lonxitude variable que se corresponda cun escenario do xogo de Buscaminas. Este array almacenará un -1 nas posicións onde hai minas e un 0 en caso contrario. A función debe devolver un array bidimensional onde cada posición que non teña mina, debe ter a información do número de minas adxacentes (diagonal, horizontal e vertical).
 
-// // // Exemplo:
-const arrayEntrada = [
-	[0, 0, -1, 0],
-	[0, -1, -1, 0],
-];
+// // // // Exemplo:
+// const arrayEntrada = [
+// 	[0, 0, -1, 0],
+// 	[0, -1, -1, 0],
+// ];
 
-// // arraySaida = [[1, 3, -1, 2],
-// // [1, -1, -1, 2]];
+// // // arraySaida = [[1, 3, -1, 2],
+// // // [1, -1, -1, 2]];
 
-function contMinas(tabla, fil, col) {
-	let contadoMinas = 0;
-	for (let i = -1; i < 1; i++) {
-		for (let j = -1; j < 1; j++) {
-			if (tabla[fil + i]?.[col + j] == -1) contadoMinas++;
-		}
-	}
-	return contadoMinas;
-}
+// const arrayEntrada2 = [
+// 	[0, 0, -1, 0],
+// 	[0, -1, -1, 0],
+// 	[0, -1, 0, -1],
+// ];
 
-function buscaminas(array) {
-	let arraySaida = JSON.parse(JSON.stringify(array));
-	for (let fila = 0; fila < array.length; fila++) {
-		for (let col = 0; col < array[fila].length; col++) {
-			arraySaida[fila][col] = contMinas(arraySaida, fila, col);
-		}
-	}
+// function contMinas(tabla, fil, col) {
+// 	let contadoMinas = 0;
+// 	for (let i = -1; i <= 1; i++) {
+// 		for (let j = -1; j <= 1; j++) {
+// 			if (tabla[fil + i]?.[col + j] == -1) contadoMinas++;
+// 		}
+// 	}
+// 	return contadoMinas;
+// }
 
-	return arraySaida;
-}
+// function buscaminas(array) {
+// 	let arraySaida = JSON.parse(JSON.stringify(array));
+// 	for (let fila = 0; fila < array.length; fila++) {
+// 		for (let col = 0; col < array[fila].length; col++) {
+// 			if (arraySaida[fila][col] == 0) {
+// 				arraySaida[fila][col] = contMinas(arraySaida, fila, col);
+// 			}
+// 		}
+// 	}
 
-console.log(buscaminas(arrayEntrada));
-console.log(arrayEntrada);
+// 	return arraySaida;
+// }
+
+// console.log(buscaminas(arrayEntrada));
+// console.log(arrayEntrada);
+// console.log(buscaminas(arrayEntrada2));
