@@ -915,3 +915,21 @@
 // console.log(buscaminas(arrayEntrada));
 // console.log(arrayEntrada);
 // console.log(buscaminas(arrayEntrada2));
+
+console.log('------------Outras funcións de arrays-----');
+
+// 1. Suma os valores da propiedade price do seguinte array de obxectos:
+
+const objects = [{ price: 1 }, { price: 2 }, { price: 3 }];
+
+console.log(objects.reduce((acc, curr) => acc + curr.price, 0));
+// console.log(
+// 	objects.reduce((acc, curr, index) => acc + curr.price, objects[0].price));
+
+console.log('---------------------');
+
+// 2. Utilizando a función reduce, obtén o valor mínimo dun array de números
+
+const arrayNum = [1, 2, -3, 4, 5, 6, 7];
+
+console.log(arrayNum.reduce((acc, curr) => Math.min(acc, curr)));
