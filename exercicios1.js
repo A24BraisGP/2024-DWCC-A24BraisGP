@@ -1009,14 +1009,14 @@ console.log(diasM);
 
 console.log('b)');
 console.log(
-	diasSemana.some((dia) => dia.charAt(0) == 's')
+	diasSemana.some((dia) => dia.startsWith('s'))
 		? 'Algún día comeza por s'
 		: 'Ningún día comeza por s'
 );
 
 console.log('c)');
 console.log(
-	diasSemana.every((dia) => dia.charAt(dia.length - 1) == 's')
+	diasSemana.every((dia) => dia.endsWith('s'))
 		? 'Todolos días rematan en s'
 		: 'Non todolos días rematan en s'
 );
@@ -1143,6 +1143,7 @@ console.log(sumaAños);
 
 const anos = [];
 sumaAños.forEach(({ year, passed }) => anos.push(passed - year));
+console.log(anos);
 
 console.log(
 	`O total de anos vividos polos científicos é : ${anos.reduce(
@@ -1167,8 +1168,7 @@ console.log(inventors);
 
 console.log('--------------------------');
 
-// 6. Dada a seguinte información, obtén un obxecto con unha propiedade para cada
-// medio de transporte, indicando o número de veces que se repite no array. É dicir, o resultado debería ser {car: 5, truck: 3, bike: 2, walk: 2, van: 2, pogostick: 1}. Intentar facer o exercicio usando o método reduce
+// 6. Dada a seguinte información, obtén un obxecto con unha propiedade para cada medio de transporte, indicando o número de veces que se repite no array. É dicir, o resultado debería ser {car: 5, truck: 3, bike: 2, walk: 2, van: 2, pogostick: 1}. Intentar facer o exercicio usando o método reduce
 const data = [
 	'car',
 	'car',
@@ -1187,13 +1187,13 @@ const data = [
 	'pogostick',
 ];
 
-const dataObject = {};
-dataObject = data.reduce((acc, curr) => {
-	if (Object.hasOwn(acc)) {
-		[acc] = [acc] + 1;
-	} else if (!Object.hasOwn(curr)) {
-		[curr] = 1;
+const dataObject = data.reduce((acc, curr) => {
+	if (Object.hasOwn(acc, curr)) {
+		acc[curr] += 1;
+	} else if (!Object.hasOwn(acc, curr)) {
+		acc[curr] = 1;
 	}
+	return acc;
 }, {});
 
 console.log(dataObject);
