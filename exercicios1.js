@@ -1004,7 +1004,7 @@ const diasSemana = [
 ];
 
 console.log('a)');
-let diasM = diasSemana.filter((dia) => dia.charAt(0) == 'm');
+let diasM = diasSemana.filter((dia) => dia.startsWith('s'));
 console.log(diasM);
 
 console.log('b)');
@@ -1052,12 +1052,10 @@ console.log(arrayNumeros.sort((a, b) => b - a)[0]);
 console.log('------------');
 
 // 5. Dada a seguinte información:
-// a. Filtra o array de inventores e crea un array só cos inventores que naceron no
-// século XVI.
+// a. Filtra o array de inventores e crea un array só cos inventores que naceron no século XVI.
 // b. Crea un array co nome completo dos inventores: ["Albert Einstein", "Isaac
 // Newton", ...]
-// c. Unha vez obtido o array co nome completo dos inventores do exercicio
-// anterior, ordénao alfabeticamente polo apelido.
+// c. Unha vez obtido o array co nome completo dos inventores do exercicio anterior, ordénao alfabeticamente polo apelido.
 // d. Ordena alfabeticamente polo apelido o array de obxectos inventores inicial.
 // e. Ordena o array de inventores pola data de nacemento.
 // f. Calcula a suma dos anos que viviron todos os inventores.
