@@ -960,7 +960,7 @@ const persoas = [
 
 console.log('a) ');
 
-let persoasMaiores = persoas.filter(({ idade }) => idade > 18);
+let persoasMaiores = persoas.filter(({ idade }) => idade >= 18);
 console.log(persoasMaiores);
 
 console.log('b )');
@@ -970,7 +970,7 @@ console.log(nomePersoas);
 console.log('c)');
 
 let nomePersoasUpper = persoas
-	.filter(({ idade }) => idade > 18)
+	.filter(({ idade }) => idade >= 18)
 	.map(({ nome }) => nome.toUpperCase());
 console.log(nomePersoasUpper);
 
@@ -1004,7 +1004,7 @@ const diasSemana = [
 ];
 
 console.log('a)');
-let diasM = diasSemana.filter((dia) => dia.startsWith('s'));
+let diasM = diasSemana.filter((dia) => dia.startsWith('m'));
 console.log(diasM);
 
 console.log('b)');
@@ -1022,10 +1022,10 @@ console.log(
 );
 
 console.log('d)');
-console.log(diasSemana.find((dia) => dia.charAt(0) == 'm'));
+console.log(diasSemana.find((dia) => dia.startsWith('m')));
 
 console.log('e)');
-console.log(diasSemana.findIndex((dia) => dia.charAt(0) == 'm'));
+console.log(diasSemana.findIndex((dia) => dia.startsWith('m')));
 
 console.log('f)');
 let diasUpper = diasSemana.map((dia) => dia.toUpperCase());
@@ -1035,19 +1035,30 @@ console.log('-------------');
 
 // 3. Fai unha función que ordene as notas dun array pasado como parámetro. Por exemplo, se se pasa o array [4,8,3,10,5] debe devolver [3,4,5,8,10]. Debes utilizar a función sort e pasarlle como parámetro unha función que ti definas que serva para realizar a comparación de elementos.
 
-const arrayNumeros = [4, 8, 3, 10, 5];
+const arrayNumeros = [4, 8, 30, 10, 5];
 
 function ordenarNotas(arrayNum) {
 	return arrayNum.sort((a, b) => a - b);
 }
 
-console.log(ordenarNotas(arrayNumeros));
+// function ordenarNotasBen(nota1, nota2) {
+// 	if (nota1 < nota2) {
+// 		return -1;
+// 	}
+// 	if (nota1 > nota2) {
+// 		return 1;
+// 	}
+// 	return 0;
+// }
 
+console.log(ordenarNotas(arrayNumeros));
+// console.log(arrayNum.sort(ordenarNotasBen));
 console.log('-------------');
 
 // 4. Dado un array de números, obtén o valor máis alto. (Usa algunha das funcións para traballar con arrays).
 
 console.log(arrayNumeros.sort((a, b) => b - a)[0]);
+console.log(arrayNumeros.reduce((acc, curr) => (acc > curr ? acc : curr)));
 
 console.log('------------');
 
@@ -1077,7 +1088,7 @@ const inventors = [
 ];
 
 console.log('a)');
-let bornXvi = inventors.filter(({ year }) => year >= 1500 && year <= 1599);
+let bornXvi = inventors.filter(({ year }) => year >= 1501 && year <= 1600);
 console.log(bornXvi);
 
 console.log('b)');
@@ -1085,7 +1096,7 @@ let completeName = inventors.map(({ first, last }) => `${first} ${last}`);
 console.log(completeName);
 
 console.log('c)');
-console.log(
+console.table(
 	completeName.sort((a, b) => {
 		const ap1 = a.split(' ')[1];
 		const ap2 = b.split(' ')[1];
@@ -1102,7 +1113,7 @@ console.log(
 
 console.log('d)');
 
-console.log(
+console.table(
 	inventors.sort((a, b) => {
 		const lastA = a.last.toUpperCase();
 		const lastB = b.last.toUpperCase();
@@ -1118,7 +1129,7 @@ console.log(
 );
 
 console.log('e)');
-console.log(
+console.table(
 	inventors.sort((a, b) => {
 		const yearA = a.year;
 		const yearB = b.year;
@@ -1149,6 +1160,8 @@ console.log(
 	)}`
 );
 
+// console.table(inventors.reduce((acc, curr) => acc + (curr.passed - curr.year)));
+
 console.log('g)');
 inventors.sort((a, b) => {
 	const livedA = a.passed - a.year;
@@ -1162,7 +1175,7 @@ inventors.sort((a, b) => {
 	// names must be equal
 	return 0;
 });
-console.log(inventors);
+console.table(inventors);
 
 console.log('--------------------------');
 
@@ -1186,12 +1199,13 @@ const data = [
 ];
 
 const dataObject = data.reduce((acc, curr) => {
-	if (Object.hasOwn(acc, curr)) {
-		acc[curr] += 1;
-	} else if (!Object.hasOwn(acc, curr)) {
-		acc[curr] = 1;
-	}
+	// if (Object.hasOwn(acc, curr)) {
+	// 	acc[curr] += 1;
+	// } else if (!Object.hasOwn(acc, curr)) {
+	// 	acc[curr] = 1;
+	// }
+	Object.hasOwn(acc, curr) ? (acc[curr] += 1) : (acc[curr] = 1);
 	return acc;
 }, {});
 
-console.log(dataObject);
+console.table(dataObject);
