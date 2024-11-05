@@ -916,296 +916,371 @@
 // console.log(arrayEntrada);
 // console.log(buscaminas(arrayEntrada2));
 
-console.log('------------Outras funcións de arrays-----');
+// console.log('------------Outras funcións de arrays-----');
 
-// 1. Suma os valores da propiedade price do seguinte array de obxectos:
+// // 1. Suma os valores da propiedade price do seguinte array de obxectos:
 
-const objects = [{ price: 1 }, { price: 2 }, { price: 3 }];
+// const objects = [{ price: 1 }, { price: 2 }, { price: 3 }];
 
-console.log(objects.reduce((acc, curr) => acc + curr.price, 0));
+// console.log(objects.reduce((acc, curr) => acc + curr.price, 0));
 
-// Desestructuración de objetos
+// // Desestructuración de objetos
 
-console.log(objects.reduce((acc, { price }) => acc + price, 0));
+// console.log(objects.reduce((acc, { price }) => acc + price, 0));
 
+// // console.log(
+// // 	objects.reduce((acc, curr, index) => acc + curr.price, objects[0].price));
+
+// console.log('---------------------');
+
+// // 2. Utilizando a función reduce, obtén o valor mínimo dun array de números
+
+// const arrayNum = [1, 2, -3, 4, 5, 6, 7];
+
+// console.log(arrayNum.reduce((acc, curr) => Math.min(acc, curr)));
+
+// console.log('-----------Función arrays 2.0-----------');
+
+// // 1. Dado o seguinte array:
+
+// // a. Crea un novo array que conteña só as persoas maiores de idade.
+// // b. Crea un novo array que conteña os nomes (só os nomes) de todas as persoas.
+// // c. Crea un novo array que conteña, en maiúsculas, os nomes das persoas  maiores de idade.
+// // d. Crea un novo array que conteña obxectos só co id e o nome das persoas.
+
+// const persoas = [
+// 	{ nome: 'aaron', idade: 65, id: 1 },
+// 	{ nome: 'beth', idade: 2, id: 2 },
+// 	{ nome: 'ánxeles', idade: 13, id: 3 },
+// 	{ nome: 'daniel', idade: 3, id: 4 },
+// 	{ nome: 'ada', idade: 25, id: 5 },
+// 	{ nome: 'erea', idade: 1, id: 6 },
+// 	{ nome: 'navia', idade: 43, id: 7 },
+// ];
+
+// console.log('a) ');
+
+// let persoasMaiores = persoas.filter(({ idade }) => idade >= 18);
+// console.log(persoasMaiores);
+
+// console.log('b )');
+// let nomePersoas = persoas.map(({ nome }) => nome);
+// console.log(nomePersoas);
+
+// console.log('c)');
+
+// let nomePersoasUpper = persoas
+// 	.filter(({ idade }) => idade >= 18)
+// 	.map(({ nome }) => nome.toUpperCase());
+// console.log(nomePersoasUpper);
+
+// console.log('d)');
+// let nomeIdPersoas = persoas.map((persoa) => {
+// 	return { nome: persoa.nome, id: persoa.id };
+// });
+// let nomeIdPersoas2 = persoas.map(({ nome, id }) => {
+// 	return { nome, id };
+// });
+// console.log(nomeIdPersoas2);
+
+// console.log('---------------');
+
+// // 2. Dado un array cos días da semana en minúsculas:
+// // a. Obtén un novo array cos días que empecen por “m” e móstrao por consola.
+// // b. Mostra unha mensaxe indicando se algún día comeza por ‘s’.
+// // c. Mostra unha mensaxe indicando se todos os días acaban en ‘s’.
+// // d. Mostra por consola o primeiro día que empece por “m”.
+// // e. Mostra por consola a posición no array do primeiro día que empeza por “m”.
+// // f. Crea un novo array cos días da semana en maiúsculas
+
+// const diasSemana = [
+// 	'luns',
+// 	'martes',
+// 	'mercores',
+// 	'xoves',
+// 	'venres',
+// 	'sabado',
+// 	'domingo',
+// ];
+
+// console.log('a)');
+// let diasM = diasSemana.filter((dia) => dia.startsWith('m'));
+// console.log(diasM);
+
+// console.log('b)');
 // console.log(
-// 	objects.reduce((acc, curr, index) => acc + curr.price, objects[0].price));
+// 	diasSemana.some((dia) => dia.startsWith('s'))
+// 		? 'Algún día comeza por s'
+// 		: 'Ningún día comeza por s'
+// );
 
-console.log('---------------------');
+// console.log('c)');
+// console.log(
+// 	diasSemana.every((dia) => dia.endsWith('s'))
+// 		? 'Todolos días rematan en s'
+// 		: 'Non todolos días rematan en s'
+// );
 
-// 2. Utilizando a función reduce, obtén o valor mínimo dun array de números
+// console.log('d)');
+// console.log(diasSemana.find((dia) => dia.startsWith('m')));
 
-const arrayNum = [1, 2, -3, 4, 5, 6, 7];
+// console.log('e)');
+// console.log(diasSemana.findIndex((dia) => dia.startsWith('m')));
 
-console.log(arrayNum.reduce((acc, curr) => Math.min(acc, curr)));
+// console.log('f)');
+// let diasUpper = diasSemana.map((dia) => dia.toUpperCase());
+// console.log(diasUpper);
 
-console.log('-----------Función arrays 2.0-----------');
+// console.log('-------------');
 
-// 1. Dado o seguinte array:
+// // 3. Fai unha función que ordene as notas dun array pasado como parámetro. Por exemplo, se se pasa o array [4,8,3,10,5] debe devolver [3,4,5,8,10]. Debes utilizar a función sort e pasarlle como parámetro unha función que ti definas que serva para realizar a comparación de elementos.
 
-// a. Crea un novo array que conteña só as persoas maiores de idade.
-// b. Crea un novo array que conteña os nomes (só os nomes) de todas as persoas.
-// c. Crea un novo array que conteña, en maiúsculas, os nomes das persoas  maiores de idade.
-// d. Crea un novo array que conteña obxectos só co id e o nome das persoas.
+// const arrayNumeros = [4, 8, 30, 10, 5];
 
-const persoas = [
-	{ nome: 'aaron', idade: 65, id: 1 },
-	{ nome: 'beth', idade: 2, id: 2 },
-	{ nome: 'ánxeles', idade: 13, id: 3 },
-	{ nome: 'daniel', idade: 3, id: 4 },
-	{ nome: 'ada', idade: 25, id: 5 },
-	{ nome: 'erea', idade: 1, id: 6 },
-	{ nome: 'navia', idade: 43, id: 7 },
-];
-
-console.log('a) ');
-
-let persoasMaiores = persoas.filter(({ idade }) => idade >= 18);
-console.log(persoasMaiores);
-
-console.log('b )');
-let nomePersoas = persoas.map(({ nome }) => nome);
-console.log(nomePersoas);
-
-console.log('c)');
-
-let nomePersoasUpper = persoas
-	.filter(({ idade }) => idade >= 18)
-	.map(({ nome }) => nome.toUpperCase());
-console.log(nomePersoasUpper);
-
-console.log('d)');
-let nomeIdPersoas = persoas.map((persoa) => {
-	return { nome: persoa.nome, id: persoa.id };
-});
-let nomeIdPersoas2 = persoas.map(({ nome, id }) => {
-	return { nome, id };
-});
-console.log(nomeIdPersoas2);
-
-console.log('---------------');
-
-// 2. Dado un array cos días da semana en minúsculas:
-// a. Obtén un novo array cos días que empecen por “m” e móstrao por consola.
-// b. Mostra unha mensaxe indicando se algún día comeza por ‘s’.
-// c. Mostra unha mensaxe indicando se todos os días acaban en ‘s’.
-// d. Mostra por consola o primeiro día que empece por “m”.
-// e. Mostra por consola a posición no array do primeiro día que empeza por “m”.
-// f. Crea un novo array cos días da semana en maiúsculas
-
-const diasSemana = [
-	'luns',
-	'martes',
-	'mercores',
-	'xoves',
-	'venres',
-	'sabado',
-	'domingo',
-];
-
-console.log('a)');
-let diasM = diasSemana.filter((dia) => dia.startsWith('m'));
-console.log(diasM);
-
-console.log('b)');
-console.log(
-	diasSemana.some((dia) => dia.startsWith('s'))
-		? 'Algún día comeza por s'
-		: 'Ningún día comeza por s'
-);
-
-console.log('c)');
-console.log(
-	diasSemana.every((dia) => dia.endsWith('s'))
-		? 'Todolos días rematan en s'
-		: 'Non todolos días rematan en s'
-);
-
-console.log('d)');
-console.log(diasSemana.find((dia) => dia.startsWith('m')));
-
-console.log('e)');
-console.log(diasSemana.findIndex((dia) => dia.startsWith('m')));
-
-console.log('f)');
-let diasUpper = diasSemana.map((dia) => dia.toUpperCase());
-console.log(diasUpper);
-
-console.log('-------------');
-
-// 3. Fai unha función que ordene as notas dun array pasado como parámetro. Por exemplo, se se pasa o array [4,8,3,10,5] debe devolver [3,4,5,8,10]. Debes utilizar a función sort e pasarlle como parámetro unha función que ti definas que serva para realizar a comparación de elementos.
-
-const arrayNumeros = [4, 8, 30, 10, 5];
-
-function ordenarNotas(arrayNum) {
-	return arrayNum.sort((a, b) => a - b);
-}
-
-// function ordenarNotasBen(nota1, nota2) {
-// 	if (nota1 < nota2) {
-// 		return -1;
-// 	}
-// 	if (nota1 > nota2) {
-// 		return 1;
-// 	}
-// 	return 0;
+// function ordenarNotas(arrayNum) {
+// 	return arrayNum.sort((a, b) => a - b);
 // }
 
-console.log(ordenarNotas(arrayNumeros));
-// console.log(arrayNum.sort(ordenarNotasBen));
-console.log('-------------');
+// // function ordenarNotasBen(nota1, nota2) {
+// // 	if (nota1 < nota2) {
+// // 		return -1;
+// // 	}
+// // 	if (nota1 > nota2) {
+// // 		return 1;
+// // 	}
+// // 	return 0;
+// // }
 
-// 4. Dado un array de números, obtén o valor máis alto. (Usa algunha das funcións para traballar con arrays).
+// console.log(ordenarNotas(arrayNumeros));
+// // console.log(arrayNum.sort(ordenarNotasBen));
+// console.log('-------------');
 
-console.log(arrayNumeros.sort((a, b) => b - a)[0]);
-console.log(arrayNumeros.reduce((acc, curr) => (acc > curr ? acc : curr)));
+// // 4. Dado un array de números, obtén o valor máis alto. (Usa algunha das funcións para traballar con arrays).
 
-console.log('------------');
+// console.log(arrayNumeros.sort((a, b) => b - a)[0]);
+// console.log(arrayNumeros.reduce((acc, curr) => (acc > curr ? acc : curr)));
 
-// 5. Dada a seguinte información:
-// a. Filtra o array de inventores e crea un array só cos inventores que naceron no século XVI.
-// b. Crea un array co nome completo dos inventores: ["Albert Einstein", "Isaac
-// Newton", ...]
-// c. Unha vez obtido o array co nome completo dos inventores do exercicio anterior, ordénao alfabeticamente polo apelido.
-// d. Ordena alfabeticamente polo apelido o array de obxectos inventores inicial.
-// e. Ordena o array de inventores pola data de nacemento.
-// f. Calcula a suma dos anos que viviron todos os inventores.
-// g. Ordena os inventores polos anos que viviron, primeiro o máis lonxevo
+// console.log('------------');
 
-const inventors = [
-	{ first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
-	{ first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
-	{ first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
-	{ first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
-	{ first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
-	{ first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
-	{ first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
-	{ first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
-	{ first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
-	{ first: 'Sarah', last: 'Goode', year: 1855, passed: 1905 },
-	{ first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
-	{ first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 },
-];
+// // 5. Dada a seguinte información:
+// // a. Filtra o array de inventores e crea un array só cos inventores que naceron no século XVI.
+// // b. Crea un array co nome completo dos inventores: ["Albert Einstein", "Isaac
+// // Newton", ...]
+// // c. Unha vez obtido o array co nome completo dos inventores do exercicio anterior, ordénao alfabeticamente polo apelido.
+// // d. Ordena alfabeticamente polo apelido o array de obxectos inventores inicial.
+// // e. Ordena o array de inventores pola data de nacemento.
+// // f. Calcula a suma dos anos que viviron todos os inventores.
+// // g. Ordena os inventores polos anos que viviron, primeiro o máis lonxevo
 
-console.log('a)');
-let bornXvi = inventors.filter(({ year }) => year >= 1501 && year <= 1600);
-console.log(bornXvi);
+// const inventors = [
+// 	{ first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+// 	{ first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+// 	{ first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+// 	{ first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+// 	{ first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+// 	{ first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+// 	{ first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+// 	{ first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+// 	{ first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+// 	{ first: 'Sarah', last: 'Goode', year: 1855, passed: 1905 },
+// 	{ first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+// 	{ first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 },
+// ];
 
-console.log('b)');
-let completeName = inventors.map(({ first, last }) => `${first} ${last}`);
-console.log(completeName);
+// console.log('a)');
+// let bornXvi = inventors.filter(({ year }) => year >= 1501 && year <= 1600);
+// console.log(bornXvi);
 
-console.log('c)');
-console.table(
-	completeName.sort((a, b) => {
-		const ap1 = a.split(' ')[1];
-		const ap2 = b.split(' ')[1];
-		if (ap1 < ap2) {
-			return -1;
+// console.log('b)');
+// let completeName = inventors.map(({ first, last }) => `${first} ${last}`);
+// console.log(completeName);
+
+// console.log('c)');
+// console.table(
+// 	completeName.sort((a, b) => {
+// 		const ap1 = a.split(' ')[1];
+// 		const ap2 = b.split(' ')[1];
+// 		if (ap1 < ap2) {
+// 			return -1;
+// 		}
+// 		if (ap1 > ap2) {
+// 			return 1;
+// 		}
+// 		// names must be equal
+// 		return 0;
+// 	})
+// );
+
+// console.log('d)');
+
+// console.table(
+// 	inventors.sort((a, b) => {
+// 		const lastA = a.last.toUpperCase();
+// 		const lastB = b.last.toUpperCase();
+// 		if (lastA < lastB) {
+// 			return -1;
+// 		}
+// 		if (lastA > lastB) {
+// 			return 1;
+// 		}
+// 		// names must be equal
+// 		return 0;
+// 	})
+// );
+
+// console.log('e)');
+// console.table(
+// 	inventors.sort((a, b) => {
+// 		const yearA = a.year;
+// 		const yearB = b.year;
+// 		if (yearA < yearB) {
+// 			return -1;
+// 		}
+// 		if (yearA > yearB) {
+// 			return 1;
+// 		}
+// 		// names must be equal
+// 		return 0;
+// 	})
+// );
+
+// console.log('f)');
+// const sumaAños = inventors.map(({ year, passed }) => {
+// 	return { year, passed };
+// });
+// console.log(sumaAños);
+
+// const anos = [];
+// sumaAños.forEach(({ year, passed }) => anos.push(passed - year));
+// console.log(anos);
+
+// console.log(
+// 	`O total de anos vividos polos científicos é : ${anos.reduce(
+// 		(acc, curr) => acc + curr
+// 	)}`
+// );
+
+// // console.table(inventors.reduce((acc, curr) => acc + (curr.passed - curr.year)));
+
+// console.log('g)');
+// inventors.sort((a, b) => {
+// 	const livedA = a.passed - a.year;
+// 	const livedB = b.passed - b.year;
+// 	if (livedA < livedB) {
+// 		return 1;
+// 	}
+// 	if (livedA > livedB) {
+// 		return -1;
+// 	}
+// 	// names must be equal
+// 	return 0;
+// });
+// console.table(inventors);
+
+// console.log('--------------------------');
+
+// // 6. Dada a seguinte información, obtén un obxecto con unha propiedade para cada medio de transporte, indicando o número de veces que se repite no array. É dicir, o resultado debería ser {car: 5, truck: 3, bike: 2, walk: 2, van: 2, pogostick: 1}. Intentar facer o exercicio usando o método reduce
+// const data = [
+// 	'car',
+// 	'car',
+// 	'truck',
+// 	'truck',
+// 	'bike',
+// 	'walk',
+// 	'car',
+// 	'van',
+// 	'bike',
+// 	'walk',
+// 	'car',
+// 	'van',
+// 	'car',
+// 	'truck',
+// 	'pogostick',
+// ];
+
+// const dataObject = data.reduce((acc, curr) => {
+// 	// if (Object.hasOwn(acc, curr)) {
+// 	// 	acc[curr] += 1;
+// 	// } else if (!Object.hasOwn(acc, curr)) {
+// 	// 	acc[curr] = 1;
+// 	// }
+// 	Object.hasOwn(acc, curr) ? (acc[curr] += 1) : (acc[curr] = 1);
+// 	return acc;
+// }, {});
+
+// console.table(dataObject);
+
+console.log('--------REGEXP-------');
+
+// 2. Escribe unha expresión regular para comprobar que cada un dos seguintes elementos aparece nunha cadea.
+// a. car e cat
+// b. pop e prop
+// c. ferret, ferry e ferrari
+// d. Calquera palabra rematada en ious
+// e. Un espazo seguido de punto, coma, dous puntos ou punto e coma.
+// f. Unha palabra con máis de 6 letras.
+// g. Unha palabra sen a letra e (ou E).
+// Unha vez teñas a expresión regular creada, comproba se se pode facer máis pequena.
+// Utiliza o seguinte código para comprobar o resultado, colocando como primeiro parámetro da función verify a túa expresión regular:
+
+function verify(regexp, yes, no) {
+	// Ignore unfinished exercises
+	if (regexp.source == '...') return;
+	for (let str of yes)
+		if (!regexp.test(str)) {
+			console.log(`Failure to match '${str}'`);
 		}
-		if (ap1 > ap2) {
-			return 1;
+	for (let str of no)
+		if (regexp.test(str)) {
+			console.log(`Unexpected match for '${str}'`);
 		}
-		// names must be equal
-		return 0;
-	})
+}
+verify(/ca(?:t|r)/, ['my car', 'bad cats'], ['camper', 'high art']);
+verify(/pr?op/, ['pop culture', 'mad props'], ['plop', 'prrrop']);
+verify(
+	/ferr(?:et|y|ari)/,
+	['ferret', 'ferry', 'ferrari'],
+	['ferrum', 'transfer A']
+);
+verify(
+	/ious\b/,
+	['how delicious', 'spacious room'],
+	['ruinous', 'consciousness']
+);
+verify(/\s[.|,|:|;]/, ['bad punctuation .'], ['escape the period']);
+verify(
+	/\w{6,}/,
+	['Siebentausenddreihundertzweiundzwanzig'],
+	['no', 'three small words']
+);
+verify(
+	/\b[^e]\b/gi,
+	['red platypus', 'wobbling nest'],
+	['earth bed', 'learning ape', 'BEET']
 );
 
-console.log('d)');
+// 3. Unha dirección de rede MAC está composta por 6 grupos de dous números hexadecimais separados por “:”. Por exemplo "01:32:54:67:89:AB".
+// Escribe unha expresión regular que comprobe se unha dirección MAC é correcta.
 
-console.table(
-	inventors.sort((a, b) => {
-		const lastA = a.last.toUpperCase();
-		const lastB = b.last.toUpperCase();
-		if (lastA < lastB) {
-			return -1;
-		}
-		if (lastA > lastB) {
-			return 1;
-		}
-		// names must be equal
-		return 0;
-	})
-);
+let regexpMac = /(([A-F]|\d){0,2}:){5}([A-F]|\d){0,2}/g;
+console.log(regexpMac.exec('B1:32:C4:E7:89:AB'));
 
-console.log('e)');
-console.table(
-	inventors.sort((a, b) => {
-		const yearA = a.year;
-		const yearB = b.year;
-		if (yearA < yearB) {
-			return -1;
-		}
-		if (yearA > yearB) {
-			return 1;
-		}
-		// names must be equal
-		return 0;
-	})
-);
+// 4. Crea unha función que comprobe se un contrasinal é válido, é dicir, cumpre as seguintes condicións:
+// a. Mínimo 8 caracteres.
+// b. Sen espazos en branco.
+// c. Que teña, polo menos, 3 das seguintes tipos de caracteres:
+// i. maiúsculas
+// ii. minúsculas
+// iii. números
+// iv. caracteres especiais: ¡!$?%&#@/\()=¿?*[];,:._<>+-
 
-console.log('f)');
-const sumaAños = inventors.map(({ year, passed }) => {
-	return { year, passed };
-});
-console.log(sumaAños);
+let password = 'abcABC123.';
+let regexpPass = /(?=.*\d)(?=.*\W)(?=.*[A-Z])(?=.*[a-z]){8,}/;
+console.log(regexpPass.exec(password));
 
-const anos = [];
-sumaAños.forEach(({ year, passed }) => anos.push(passed - year));
-console.log(anos);
+// 5. Ás veces é útil eliminar as etiquetas HTML dun texto para evitar que se inclúa código mal intencionado nunha páxina web. Crea unha función á que se lle pase un texto e devolva o mesmo texto coas etiquetas HTML eliminadas
 
-console.log(
-	`O total de anos vividos polos científicos é : ${anos.reduce(
-		(acc, curr) => acc + curr
-	)}`
-);
-
-// console.table(inventors.reduce((acc, curr) => acc + (curr.passed - curr.year)));
-
-console.log('g)');
-inventors.sort((a, b) => {
-	const livedA = a.passed - a.year;
-	const livedB = b.passed - b.year;
-	if (livedA < livedB) {
-		return 1;
-	}
-	if (livedA > livedB) {
-		return -1;
-	}
-	// names must be equal
-	return 0;
-});
-console.table(inventors);
-
-console.log('--------------------------');
-
-// 6. Dada a seguinte información, obtén un obxecto con unha propiedade para cada medio de transporte, indicando o número de veces que se repite no array. É dicir, o resultado debería ser {car: 5, truck: 3, bike: 2, walk: 2, van: 2, pogostick: 1}. Intentar facer o exercicio usando o método reduce
-const data = [
-	'car',
-	'car',
-	'truck',
-	'truck',
-	'bike',
-	'walk',
-	'car',
-	'van',
-	'bike',
-	'walk',
-	'car',
-	'van',
-	'car',
-	'truck',
-	'pogostick',
-];
-
-const dataObject = data.reduce((acc, curr) => {
-	// if (Object.hasOwn(acc, curr)) {
-	// 	acc[curr] += 1;
-	// } else if (!Object.hasOwn(acc, curr)) {
-	// 	acc[curr] = 1;
-	// }
-	Object.hasOwn(acc, curr) ? (acc[curr] += 1) : (acc[curr] = 1);
-	return acc;
-}, {});
-
-console.table(dataObject);
+function cleanHTML(str) {
+	let regexpHtml = /(<.*/>)*/g
+	str.replace(regexpHtml, "")	
+}
