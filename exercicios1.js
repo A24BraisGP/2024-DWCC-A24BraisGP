@@ -1280,7 +1280,31 @@ console.log(regexpPass.exec(password));
 
 // 5. Ás veces é útil eliminar as etiquetas HTML dun texto para evitar que se inclúa código mal intencionado nunha páxina web. Crea unha función á que se lle pase un texto e devolva o mesmo texto coas etiquetas HTML eliminadas
 
-// function cleanHTML(str) {
-// 	let regexpHtml = /(<.*/>)*/g
-// 	str.replace(regexpHtml, "")
-// }
+function cleanHTML(text) {
+	const regex = /Dog/i;
+	text.replace(regex, ' ');
+	return text;
+}
+
+let textToClean = '<h1>ALA</h1> <span>QUE CHULO</span>';
+console.log(cleanHTML(textToClean));
+
+// 6. Dado o seguinte array de insultos, fai un script tal que cada vez que apareza un deles nun texto o substitúa pola primeira letra do insulto e un número de asteriscos igual á lonxitude do insulto - 1.
+
+// let insultos = ["testán", "langrán", "fervellasverzas", "baldreo", "lacazán", "pillabán"];
+
+// Así, por exemplo, cada vez que apareza testán nun texto, debe substituírse por
+// "t*****".
+
+let insultos = [
+	'testán',
+	'langrán',
+	'fervellasverzas',
+	'baldreo',
+	'lacazán',
+	'pillabán',
+];
+
+function eufemismos(text) {
+	text.split('');
+}
