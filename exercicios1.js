@@ -1281,9 +1281,9 @@ console.log(regexpPass.exec(password));
 // 5. Ás veces é útil eliminar as etiquetas HTML dun texto para evitar que se inclúa código mal intencionado nunha páxina web. Crea unha función á que se lle pase un texto e devolva o mesmo texto coas etiquetas HTML eliminadas
 
 function cleanHTML(text) {
-	const regex = /Dog/i;
-	text.replace(regex, ' ');
-	return text;
+	const regex = /<.*?>/gi;
+	let newText = text.replace(regex, '').trim();
+	return newText;
 }
 
 let textToClean = '<h1>ALA</h1> <span>QUE CHULO</span>';
@@ -1306,5 +1306,21 @@ let insultos = [
 ];
 
 function eufemismos(text) {
-	text.split('');
+	let textArray = text.split(' ');
+	let regpexInsulto = '';
+	let word = '';
+	for (let i = 0; i < textArray.length; i++) {
+		word = textArray[i];
+		for (const insulto of insultos) {
+			regpexInsulto = new RegExp(insulto, 'g');
+			if (regpexInsulto.test(word)) {
+				word = word.slice(0, 1).padEnd(textArray[i].length, '*');
+
+				textArray[i] = word;
+			}
+		}
+	}
+	return textArray.join(' ');
 }
+
+console.log(eufemismos('testán langrán bos días pillabán'));
