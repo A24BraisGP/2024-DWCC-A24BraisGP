@@ -110,8 +110,9 @@ console.log('----------------');
 
 // crearCalendario(calendario, 2022, 11);
 
-let taboaCalendario = document.getElementById('calendario');
+let taboaCalendario = document.createElement('table');
 taboaCalendario.style.border = '1px solid black';
+let trH = document.createElement('tr');
 let th = document.createElement('th');
 th.style.backgroundColor = 'grey';
 th.style.fontWeight = 'strong';
@@ -131,12 +132,25 @@ td5.innerText = 'V';
 td6.innerText = 'S';
 td7.innerText = 'D';
 th.append(td, td2, td3, td4, td5, td6, td7);
-taboaCalendario.append(th);
-console.log(taboaCalendario);
+trH.append(th);
+taboaCalendario.append(trH);
 
+let tdDia;
+let trSemana = document.createElement('tr');
 function crearCalendario(elemento, ano, mes) {
+	// Para sacar o número de días que ten cada mes ->
 	let numDias = new Date(ano, mes, 0).getDate();
-
-	for (let index = 0; index < numDias; index++) {}
-	return;
+	for (let index = 0; index < 5; index++) {
+		for (let index = 1; index <= numDias; index++) {
+			tdDia = document.createElement('td');
+			tdDia.innerText = `${index}`;
+			tdDia.style.border = '1px solid black';
+			trSemana.append(tdDia);
+		}
+		taboaCalendario.append(trSemana);
+	}
+	elemento.append(taboaCalendario);
+	return elemento;
 }
+let elementoCal = document.getElementById('cal');
+console.log(crearCalendario(elementoCal, 1999, 1));
