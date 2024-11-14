@@ -6,6 +6,9 @@
 
 const escolleSexo = document.querySelectorAll('label')[3];
 
+// let form = document.querySelector("form")
+// let label = form.lastElementChild.previousElementSibling (colle o penúltimo elemento)
+
 console.log(escolleSexo.innerHTML);
 console.log(escolleSexo.innerText);
 console.log(escolleSexo.textContent);
@@ -22,6 +25,8 @@ console.log('O valor do seleccionado é: ');
 inputSexo.forEach((el) => {
 	console.log(` ${el.hasAttribute('checked') ? el.value : ''}`);
 });
+
+//escolleSexo.querySelector("input:checked").value => selecciona por atributo
 
 // ● O texto de cada un dos elementos <li>
 
@@ -43,3 +48,5 @@ divs.forEach((el) => {
 		console.log(el.dataset.widgetName);
 	}
 });
+
+console.log(document.querySelector('[data-widget-name]').dataset.widgetName);

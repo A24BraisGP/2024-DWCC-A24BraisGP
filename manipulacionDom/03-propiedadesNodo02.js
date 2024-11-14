@@ -14,14 +14,7 @@ console.log(ligazons[ligazons.length - 2].href);
 
 // ● O número de ligazóns que apuntan a http://proba
 
-let count = 0;
-const reg = new RegExp('[http:// proba].*');
-ligazons.forEach((lig) => {
-	if (reg.test(lig.href)) {
-		count++;
-	}
-});
-console.log(`${count} ligazóns apuntan a proba`);
+console.log(document.querySelectorAll("a[href='http://proba']").length);
 
 // ● O número de ligazóns do terceiro parágrafo.
 
@@ -33,8 +26,6 @@ console.log(nLigTerP);
 
 // ● Modifica o estilo das ligazóns que apuntan a http://proba para que teñan o texto de cor laranxa.
 
-ligazons.forEach((lig) => {
-	if (reg.test(lig.href)) {
-		lig.style.color = 'orange';
-	}
-});
+document
+	.querySelectorAll("a[href='http://proba']")
+	.forEach((el) => (el.style.color = 'orange'));
