@@ -110,6 +110,33 @@ console.log('----------------');
 
 // crearCalendario(calendario, 2022, 11);
 
+let taboaCalendario = document.getElementById('calendario');
+taboaCalendario.style.border = '1px solid black';
+let th = document.createElement('th');
+th.style.backgroundColor = 'grey';
+th.style.fontWeight = 'strong';
+let td = document.createElement('td');
+let td2 = document.createElement('td');
+let td3 = document.createElement('td');
+let td4 = document.createElement('td');
+let td5 = document.createElement('td');
+let td6 = document.createElement('td');
+let td7 = document.createElement('td');
+
+td.innerText = 'L';
+td2.innerText = 'M';
+td3.innerText = 'Me';
+td4.innerText = 'X';
+td5.innerText = 'V';
+td6.innerText = 'S';
+td7.innerText = 'D';
+th.append(td, td2, td3, td4, td5, td6, td7);
+taboaCalendario.append(th);
+console.log(taboaCalendario);
+
 function crearCalendario(elemento, ano, mes) {
+	let numDias = new Date(ano, mes, 0).getDate();
+
+	for (let index = 0; index < numDias; index++) {}
 	return;
 }
