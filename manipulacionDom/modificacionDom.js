@@ -170,14 +170,55 @@ function crearCalendario(elemento, ano, mes) {
 	return elemento;
 }
 let elementoCal = document.getElementById('cal');
-// console.log(crearCalendario(elementoCal, 2022, 11));
+console.log(crearCalendario(elementoCal, 2022, 11));
 // console.log(crearCalendario(elementoCal, 2022, 3));
-console.log(crearCalendario(elementoCal, 2024, 5));
+// console.log(crearCalendario(elementoCal, 2024, 5));
 
 console.log('----------------------------');
 
 // 8. Ordena a seguinte táboa pola columna “Nome”. Escribe un código que funcione independentemente do número de filas da táboa.
 
-let taboaOrd = document.getElementById('taboaOdenar');
-for (const element of taboaOrd.querySelectorAll('tr').length) {
+let taboaOrd = document.getElementById('taboaOrdenar');
+let tbodyRows = taboaOrd.tBodies[0].rows;
+console.log(tbodyRows);
+console.log(taboaOrd);
+
+let ordedRows = Array.from(tbodyRows).sort((a, b) => {
+	let name1 = a.cells[0].innerText;
+	let name2 = b.cells[0].innerText;
+	if (name1 > name2) {
+		return 1;
+	}
+	if (name1 < name2) {
+		return -1;
+	}
+	if (name1 == name2) {
+		return 0;
+	}
+});
+// Append move os elementos de lugar, volvemos a poñelos dende 0 xa ordenados, non borra nin sobreescribe, moveos.
+ordedRows.forEach((el) => taboaOrd.tBodies[0].append(el));
+
+console.log('---------------------');
+
+// 9. Dada unha lista como a seguinte, escribe o código que engada o número de descendentes.
+let listaAnimal = document.getElementById('listaAnimais');
+
+function recorrerLi(lista) {
+	let count = 0;
+	let lis = lista.querySelectorAll('li');
+	let li = document.createElement('li');
+	let ul = document.createElement('ul');
+	for (const element of lis) {
+		if (element.querySelector('ul')) {
+			count = 0;
+			recorrerLi(element);
+		} else {
+			count++;
+		}
+		element.innerText += `[${count}]`;
+		ul.append(element);
+	}
+	return ul;
 }
+console.log(recorrerLi(listaAnimal));
