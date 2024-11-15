@@ -92,6 +92,9 @@ function createTree(data) {
 		let li = document.createElement('li');
 		li.innerText = `${key}`;
 		listaUl.append(li);
+		if (Object.keys(data[key]).length) {
+			li.append(createTree(value));
+		}
 	}
 	return listaUl;
 }
@@ -113,44 +116,68 @@ console.log('----------------');
 let taboaCalendario = document.createElement('table');
 taboaCalendario.style.border = '1px solid black';
 let trH = document.createElement('tr');
-let th = document.createElement('th');
-th.style.backgroundColor = 'grey';
-th.style.fontWeight = 'strong';
-let td = document.createElement('td');
-let td2 = document.createElement('td');
-let td3 = document.createElement('td');
-let td4 = document.createElement('td');
-let td5 = document.createElement('td');
-let td6 = document.createElement('td');
-let td7 = document.createElement('td');
 
-td.innerText = 'L';
-td2.innerText = 'M';
-td3.innerText = 'Me';
-td4.innerText = 'X';
-td5.innerText = 'V';
-td6.innerText = 'S';
-td7.innerText = 'D';
-th.append(td, td2, td3, td4, td5, td6, td7);
-trH.append(th);
+trH.style.backgroundColor = 'grey';
+
+let diasSemana = ['L', 'M', 'Me', 'X', 'V', 'S', 'D'];
+
+for (let index = 0; index < 7; index++) {
+	let th = document.createElement('th');
+	th.innerText = diasSemana[index];
+	th.style.fontWeight = 'strong';
+	th.style.border = '1px solid black';
+	trH.append(th);
+}
+
 taboaCalendario.append(trH);
 
-let tdDia;
-let trSemana = document.createElement('tr');
+let listaSemanas = [];
+
+for (let index = 0; index < 5; index++) {
+	let trSemana = document.createElement('tr');
+	listaSemanas[index] = trSemana;
+}
 function crearCalendario(elemento, ano, mes) {
 	// Para sacar o número de días que ten cada mes ->
+	mes--;
+	// O mes en dates está en array, xaneiro é 0
 	let numDias = new Date(ano, mes, 0).getDate();
+	let dia1 = new Date(ano, mes, 0).getDay();
+	let diasPasados = 0;
 	for (let index = 0; index < 5; index++) {
-		for (let index = 1; index <= numDias; index++) {
-			tdDia = document.createElement('td');
-			tdDia.innerText = `${index}`;
-			tdDia.style.border = '1px solid black';
-			trSemana.append(tdDia);
+		for (let indexDias = 1; indexDias <= 7; indexDias++) {
+			if (diasPasados < dia1) {
+				let tdDia = document.createElement('td');
+				tdDia.innerText = '';
+				tdDia.style.border = '1px solid black';
+				listaSemanas[index].append(tdDia);
+			} else {
+				let tdDia = document.createElement('td');
+				tdDia.innerText = `${diasPasados}`;
+				tdDia.style.border = '1px solid black';
+				listaSemanas[index].append(tdDia);
+			}
+			if (diasPasados == numDias) {
+				diasPasados = '';
+			} else if (typeof diasPasados == 'number') {
+				diasPasados++;
+			}
 		}
-		taboaCalendario.append(trSemana);
+
+		taboaCalendario.append(listaSemanas[index]);
 	}
 	elemento.append(taboaCalendario);
 	return elemento;
 }
 let elementoCal = document.getElementById('cal');
-console.log(crearCalendario(elementoCal, 1999, 1));
+// console.log(crearCalendario(elementoCal, 2022, 11));
+// console.log(crearCalendario(elementoCal, 2022, 3));
+console.log(crearCalendario(elementoCal, 2024, 5));
+
+console.log('----------------------------');
+
+// 8. Ordena a seguinte táboa pola columna “Nome”. Escribe un código que funcione independentemente do número de filas da táboa.
+
+let taboaOrd = document.getElementById('taboaOdenar');
+for (const element of taboaOrd.querySelectorAll('tr').length) {
+}
