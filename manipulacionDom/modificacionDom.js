@@ -38,30 +38,23 @@ taboa.remove();
 
 let listaUl = document.getElementById('lista-ul');
 
-let liUl = document.createElement('li');
-let liUl2 = document.createElement('li');
-let liUl3 = document.createElement('li');
-let liUl4 = document.createElement('li');
-
-let listaLiUl = [liUl, liUl2, liUl3, liUl4];
-for (const element of listaLiUl) {
-	element.innerText = `${listaLiUl.indexOf(element) + 1}`;
-	listaUl.append(element);
+for (let index = 1; index <= 4; index++) {
+	let li = document.createElement('li');
+	li.innerText = `${index}`;
+	listaUl.append(li);
 }
 
 console.log('---------------');
 
 // 5. Escribe o código JavaScript para inserir “<li>2</li><li>3</li>” entre os dous <li> seguintes:
 
-let li1 = document.getElementById('one');
-let li4 = document.getElementById('two');
 let li2 = document.createElement('li');
 let li3 = document.createElement('li');
-
 li2.innerText = '2';
 li3.innerText = '3';
-li1.after(li2);
-li4.before(li3);
+
+document.getElementById('one').after(li2);
+document.getElementById('two').before(li3);
 
 console.log('------------');
 
@@ -179,11 +172,11 @@ console.log('----------------------------');
 // 8. Ordena a seguinte táboa pola columna “Nome”. Escribe un código que funcione independentemente do número de filas da táboa.
 
 let taboaOrd = document.getElementById('taboaOrdenar');
-let tbodyRows = taboaOrd.tBodies[0].rows;
-console.log(tbodyRows);
+let tBodyRows = taboaOrd.tBodies[0].rows;
+console.log(tBodyRows);
 console.log(taboaOrd);
 
-let ordedRows = Array.from(tbodyRows).sort((a, b) => {
+let ordedRows = Array.from(tBodyRows).sort((a, b) => {
 	let name1 = a.cells[0].innerText;
 	let name2 = b.cells[0].innerText;
 	if (name1 > name2) {
@@ -205,20 +198,10 @@ console.log('---------------------');
 let listaAnimal = document.getElementById('listaAnimais');
 
 function recorrerLi(lista) {
-	let count = 0;
-	let lis = lista.querySelectorAll('li');
-	let li = document.createElement('li');
-	let ul = document.createElement('ul');
-	for (const element of lis) {
-		if (element.querySelector('ul')) {
-			count = 0;
-			recorrerLi(element);
-		} else {
-			count++;
-		}
-		element.innerText += `[${count}]`;
-		ul.append(element);
-	}
-	return ul;
+	let uls = lista.querySelectorAll('ul');
+
+	return lista;
 }
+
 console.log(recorrerLi(listaAnimal));
+console.log(listaAnimal.querySelectorAll('ul'));
