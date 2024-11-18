@@ -5,7 +5,7 @@
 // b. elemento.innerHTML = text;
 // c. elemento.textContent = text;
 
-// element.innerHTML
+//A e C porque incluirán o texto pero non aplicarán as etiquetas interpretadas como etiquetas HTML
 
 // 2. Dada unha lista <ol> con varios elementos <li>, crea o código necesario para eliminar todos os <li> da lista
 
@@ -32,7 +32,7 @@ console.log('----------------');
 let taboa = document.getElementById('taboa');
 taboa.remove();
 
-// Porque se trata dun nodo texto, non dun elemento ao que ataque o método remove()
+// Non é html válido, non pode ter nodos sen etiquetado de táboa dentro da táboa. O navegador sácao fóra antes de executar o remove, polo que texto queda fora da táboa
 
 // 4. Crea un documento HTML que conteña un elemento <ul>. Dende JavaScript crea 4 elementos <li> e engádeos á lista <ul>, de tal forma que sexan visibles no navegador
 
@@ -93,7 +93,7 @@ function createTree(data) {
 }
 
 console.log(createTree(arbore));
-
+document.getElementById('obx').append(createTree(arbore));
 console.log('----------------');
 
 // 7. Escribe unha función crearCalendario(elemento, ano, mes) que engada ao elemento pasado como parámetro un calendario do ano e mes indicados.
@@ -195,13 +195,11 @@ ordedRows.forEach((el) => taboaOrd.tBodies[0].append(el));
 console.log('---------------------');
 
 // 9. Dada unha lista como a seguinte, escribe o código que engada o número de descendentes.
+
 let listaAnimal = document.getElementById('listaAnimais');
 
-function recorrerLi(lista) {
-	let uls = lista.querySelectorAll('ul');
+//TODO contar os nodos fillos
+function recorrerLi(lista) {}
 
-	return lista;
-}
-
-console.log(recorrerLi(listaAnimal));
-console.log(listaAnimal.querySelectorAll('ul'));
+recorrerLi(listaAnimal);
+document.getElementById('listAnim').append(listaAnimal);
