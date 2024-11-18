@@ -196,7 +196,7 @@ console.log('---------------------');
 
 // 9. Dada unha lista como a seguinte, escribe o código que engada o número de descendentes.
 
-let listaAnimal = document.getElementById('listaAnimais');
+const listaAnimal = document.getElementById('listaAnimais');
 
 //TODO contar os nodos fillos
 function recorrerLi(lista) {}
