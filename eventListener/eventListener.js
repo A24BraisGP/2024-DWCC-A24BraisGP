@@ -17,13 +17,15 @@ let listaUl = document.getElementById('lista');
 
 submit.addEventListener('click', engadirTextLista);
 
-function engadirTextLista() {
-	let text = document.getElementById('texto').value;
+function engadirTextLista(event) {
+	event.preventDefault();
+	let text = document.getElementById('texto');
 	let li = document.createElement('li');
-	li.innerText = text;
+	li.innerText = text.value;
 	listaUl.append(li);
 	text.value = '';
 }
+console.log('-----------------');
 
 // 3. Nunha páxina HTML hai un botón ao que fai referencia a variable button do
 // seguinte código. Indica que manexadores de eventos se executan dos seguintes:
@@ -41,6 +43,43 @@ function engadirTextLista() {
 // Debes asegurarte que a funcionalidade só se habilita cando se pulsa sobre o texto
 // “Sweeties (click me)!” e non sobre calquera outra zona da páxina/liña.
 
-// Nestes casos é útil modificar o cursor cando pase por riba do texto para que teña
-// estilo “pointer” e informar á persoa usuaria que esa é unha zona na que se pode
-// pulsar.
+// Nestes casos é útil modificar o cursor cando pase por riba do texto para que teña estilo “pointer” e informar á persoa usuaria que esa é unha zona na que se pode pulsar.
+
+let ul = document.createElement('ul');
+ul.classList.add('oculto');
+let names = ['cake', 'donut', 'honey'];
+names.forEach((el) => {
+	let li = document.createElement('option');
+	li.value = el;
+	li.innerText = el;
+	ul.append(li);
+});
+
+function showSelect(event) {
+	event.preventDefault();
+	ul.classList.toggle('oculto');
+}
+
+document.getElementById('aSelect').after(ul);
+document.getElementById('aSelect').addEventListener('click', showSelect);
+
+// 5. Insire unha imaxe nunha páxina web e engádelle un listener para cada un dos seguintes eventos: click, dblclick, contextmenu, mousedown, mouseup, wheel, mouseover, mouseout, dragstart, drag, dragend. Cada vez que suceda un destes eventos mostra por consola unha mensaxe informando do evento que sucedeu.
+
+// Proba os diferentes eventos e observa a orde na que suceden.
+
+function showTypeEvent(event) {
+	console.log(`Pasou o evento : ${event.type}`);
+}
+document.getElementById('imgDog').addEventListener('click', showTypeEvent);
+document.getElementById('imgDog').addEventListener('dblclick', showTypeEvent);
+document
+	.getElementById('imgDog')
+	.addEventListener('contextmenu', showTypeEvent);
+document.getElementById('imgDog').addEventListener('mousedown', showTypeEvent);
+document.getElementById('imgDog').addEventListener('mouseup', showTypeEvent);
+document.getElementById('imgDog').addEventListener('wheel', showTypeEvent);
+document.getElementById('imgDog').addEventListener('mouseover', showTypeEvent);
+document.getElementById('imgDog').addEventListener('mouseout', showTypeEvent);
+document.getElementById('imgDog').addEventListener('dragstart', showTypeEvent);
+document.getElementById('imgDog').addEventListener('drag', showTypeEvent);
+document.getElementById('imgDog').addEventListener('dragend', showTypeEvent);
