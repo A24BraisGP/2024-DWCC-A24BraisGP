@@ -200,6 +200,14 @@ const listaAnimal = document.getElementById('listaAnimais');
 console.log(listaAnimal);
 
 //TODO contar os nodos fillos usando .children.length
-// function recorrerLi(lista) {}
+function recorrerLi(lista) {
+	for (const element of lista.querySelectorAll('li')) {
+		let count = element.querySelectorAll('li').length;
+		if (count > 0) {
+			let text = element.firstChild.textContent.trim();
+			element.firstChild.textContent = `${text}  [${count}]`;
+		}
+	}
+}
 
-// recorrerLi(listaAnimal);
+recorrerLi(listaAnimal);
