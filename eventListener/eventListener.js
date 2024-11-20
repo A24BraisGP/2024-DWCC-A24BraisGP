@@ -83,3 +83,34 @@ document.getElementById('imgDog').addEventListener('mouseout', showTypeEvent);
 document.getElementById('imgDog').addEventListener('dragstart', showTypeEvent);
 document.getElementById('imgDog').addEventListener('drag', showTypeEvent);
 document.getElementById('imgDog').addEventListener('dragend', showTypeEvent);
+
+console.log('--------------');
+
+// 1. Dado o seguinte código HTML:
+
+// Engade os seguintes eventos:
+// ● Cando o cursor do rato entre e saia do botón, mostra unha mensaxe por
+// consola indicándoo.
+// ● Ao pulsar o botón debe desaparecer o div con id=texto.
+// ● Cando se escriba algo na caixa de texto, debe mostrarse información da
+// tecla pulsada no div e tamén o código da tecla pulsada. Ademais, se o div
+// estaba oculto, debe mostrarse.
+
+function showMouseOutBoton(event) {
+	console.log(`Pasou o rato por riba do botón`);
+}
+function ocultarTextoDiv() {
+	document.getElementById('texto2').classList.toggle('oculto');
+}
+function mostrarTecla(event) {
+	let divText = document.getElementById('texto2');
+	divText.classList.remove('oculto');
+	divText.innerText = `A tecla que pulsaches é :  ${event.key}`;
+}
+document
+	.getElementById('ocultar')
+	.addEventListener('mouseout', showMouseOutBoton);
+document.getElementById('ocultar').addEventListener('click', ocultarTextoDiv);
+document
+	.getElementById('textoExercicio2')
+	.addEventListener('keydown', mostrarTecla);
