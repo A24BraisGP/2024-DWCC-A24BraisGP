@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+			th,
+			td {
+				border: 1px solid black;
+				padding: 4px;
+			}
+			th {
+				cursor: pointer;
+			}
+			th:hover {
+				background: yellow;
+			}
+		</style>
+		<title>Ex3 Propagación</title>
+	</head>
+
+	<body>
+		<table id="grid">
+			<thead>
+				<tr>
+					<th data-type="number">Age</th>
+					<th data-type="string">Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>5</td>
+					<td>John</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Pete</td>
+				</tr>
+				<tr>
+					<td>12</td>
+					<td>Ann</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Eugene</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Ilya</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<script>
+			// 3. Descarga o código HTML e fai que a táboa se poida ordenar. Cando se pulse nun <th>, deberían ordenarse os datos pola columna sobre a que se fixo clic.
+
+			// Cada columna ten o tipo de datos no atributo data-type, neste caso unha columna ten números e outra strings. Hai que ter en conta o tipo de datos na ordenación.
+
+			// O código programado debe funcionar con táboas máis grandes, tanto en número de filas como de columnas.
+
+			// Utiliza un só manexador de eventos.
+
+			function ordenarCol(event) {
+				let rows = document.querySelector('tbody').rows;
+				let orderedRows = Array.from(rows);
+				let th = event.target;
+				if (!th.nodeName == 'th') {
+					return;
+				}
+				let thIsNumber = event.target;
+				if (thIsNumber.dataset.type == 'number') {
+					orderedRows = orderedRows.sort(
+						(a, b) =>
+							parseInt(a.cells[0].innerText) -
+							parseInt(b.cells[0].innerText)
+					);
+				}
+				if (thIsNumber.dataset.type == 'string') {
+					orderedRows = orderedRows.sort((a, b) => {
+						const name1 = a.cells[1].innerText;
+						const name2 = b.cells[1].innerText;
+
+						if (name1 > name2) {
+							return 1;
+						}
+						if (name1 < name2) {
+							return -1;
+						}
+						if (name1 == name2) {
+							return 0;
+						}
+					});
+				}
+
+				orderedRows.forEach((el) =>
+					document.querySelector('tbody').append(el)
+				);
+			}
+			let thead = document.querySelector('thead').querySelector('tr');
+			thead.addEventListener('click', ordenarCol);
+		</script>
+	</body>
+</html>

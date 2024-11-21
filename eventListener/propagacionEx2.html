@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Ex2 Propagacion</title>
+		<style>
+			.oculto {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="tree" id="tree">
+			<li>
+				Animals
+				<ul>
+					<li>
+						Mammals
+						<ul>
+							<li>Cows</li>
+							<li>Donkeys</li>
+							<li>Dogs</li>
+							<li>Tigers</li>
+						</ul>
+					</li>
+					<li>
+						Other
+						<ul>
+							<li>Snakes</li>
+							<li>Birds</li>
+							<li>Lizards</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Fishes
+				<ul>
+					<li>
+						Aquarium
+						<ul>
+							<li>Guppy</li>
+							<li>Angelfish</li>
+						</ul>
+					</li>
+					<li>
+						Sea
+						<ul>
+							<li>Sea trout</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+	<script>
+		// 2. Descarga o código HTML e realiza as seguintes operacións con JavaScript:
+
+		// a. Utilizando un só manexador de eventos fai que ao pulsar sobre un nodo da árbore se mostren/oculten os nodos fillos.
+
+		// b. ¿Como farías para que só funcionase ao pulsar no título e non en calquera espacio baleiro da liña?. Realiza esta implementación dende JavaScript.
+
+		let li = document.querySelectorAll('li');
+
+		li.forEach((el) => el.addEventListener('click', ocultoFillo));
+		li.forEach((el) => (el.style.width = '0'));
+
+		function ocultoFillo(event) {
+			event.stopPropagation();
+			console.log(this);
+
+			this.querySelectorAll('ul').forEach((el) =>
+				el.classList.toggle('oculto')
+			);
+
+			// Poría o display dos elementos en inline, reducindo a súa caixa ao contido do seu texto. Ou reducilo width ao contido do texto
+		}
+	</script>
+</html>

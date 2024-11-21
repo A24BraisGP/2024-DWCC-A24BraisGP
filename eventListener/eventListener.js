@@ -1,6 +1,6 @@
 'use strict';
 // 1. Dado o seguinte código HTML, engade a configuración de estilos CSS para que inicialmente o span estea oculto. Ademais, crea o JavaScript necesario para que ao pulsar a ligazón se faga visible o contido do span e desapareza a ligazón.
-function quitarClassOculto(element) {
+function quitarClassOculto() {
 	document.getElementById('adicional').classList.toggle('oculto');
 	document.getElementById('ligazon').classList.toggle('oculto');
 }
@@ -96,16 +96,16 @@ console.log('--------------');
 // tecla pulsada no div e tamén o código da tecla pulsada. Ademais, se o div
 // estaba oculto, debe mostrarse.
 
-function showMouseOutBoton(event) {
+function showMouseOutBoton() {
 	console.log(`Pasou o rato por riba do botón`);
 }
 function ocultarTextoDiv() {
 	document.getElementById('texto2').classList.toggle('oculto');
 }
-function mostrarTecla(event) {
+function mostrarTecla(KeyboardEvent) {
 	let divText = document.getElementById('texto2');
 	divText.classList.remove('oculto');
-	divText.innerText = `A tecla que pulsaches é :  ${event.key}`;
+	divText.innerText = `A tecla que pulsaches é :  ${KeyboardEvent.key}`;
 }
 document
 	.getElementById('ocultar')
@@ -114,3 +114,5 @@ document.getElementById('ocultar').addEventListener('click', ocultarTextoDiv);
 document
 	.getElementById('textoExercicio2')
 	.addEventListener('keydown', mostrarTecla);
+
+console.log('--------------');
