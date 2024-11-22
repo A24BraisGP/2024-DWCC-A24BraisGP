@@ -28,18 +28,14 @@
 		// Utiliza un só manexador de eventos
 
 		function exitConfirmation(event) {
-			console.log(this);
-
-			console.log(event.target);
-
 			if (event.target.nodeName == 'A' || event.target.nodeName == 'I') {
-				event.preventDefault();
-				console.log('proba');
-				let btn = document.createElement('button');
-				btn.style.padding = '5px';
-				btn.innerHTML = `Seguro que quieres salir hacia ${event.target.innerHTML}`;
-				btn.addEventListener('click', () => {});
-				document.body.append(btn);
+				let confirm = window.confirm(
+					`Quieres ir a ${event.target.innerHTML} [S-N]`
+				);
+				if (!confirm) {
+					event.preventDefault();
+					console.log('Rechazado');
+				}
 			}
 		}
 

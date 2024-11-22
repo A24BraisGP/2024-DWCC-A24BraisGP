@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			.selected {
+				background: #0f0;
+			}
+
+			li {
+				cursor: pointer;
+			}
+		</style>
+		<title>Ex 6 propagación</title>
+	</head>
+
+	<body>
+		Haz click en un elemento de la lista para seleccionarlo.
+		<br />
+
+		<ul id="ul">
+			<li>Christopher Robin</li>
+			<li>Winnie-the-Pooh</li>
+			<li>Tigger</li>
+			<li>Kanga</li>
+			<li>Rabbit. Just rabbit.</li>
+		</ul>
+
+		<script>
+			// 6. Descarga o código HTML e programa a funcionalidade para que, con un único manexador de eventos, cando se seleccione un elemento da lista se lle engada a clase CSS “selected” e se lle quite esta clase a todos os demais elementos da lista.
+
+			// É dicir, só un elemento da lista pode ter a clase “selected”.
+
+			function toggleSelected(event) {
+				let lis = this.querySelectorAll('li');
+				lis.forEach((element) => {
+					event.target.classList.toggle('selected');
+				});
+			}
+
+			document
+				.getElementById('ul')
+				.addEventListener('click', toggleSelected);
+		</script>
+	</body>
+</html>
