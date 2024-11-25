@@ -33,11 +33,14 @@
 
 			function toggleSelected(event) {
 				let lis = this.querySelectorAll('li');
-				lis.forEach((element) => {
-					event.target.classList.toggle('selected');
-				});
+				let clickedLi = event.target;
+				for (const [key, value] of lis.entries()) {
+					value.classList.remove('selected');
+					if (value == clickedLi) {
+						value.classList.add('selected');
+					}
+				}
 			}
-
 			document
 				.getElementById('ul')
 				.addEventListener('click', toggleSelected);

@@ -83,26 +83,24 @@
 	<script>
 		//   5. Descarga o código HTML e CSS e fai que ao pulsar sobre unha imaxe en miniatura se cargue na imaxe principal a versión grande da imaxe pulsada. Actualiza tamén o atributo “alt” da imaxe principal co título da nova imaxe cargada. Utiliza un só manexador de eventos.
 
+		// TODO cambiar o thumb por lg
+
 		function showBig(event) {
 			event.preventDefault();
-			let oldSrc = largeImg.src;
+			let largeImg = document.getElementById('largeImg');
 			if (event.target.nodeName == 'A') {
-				let newSrc = event.target.firstElementChild.src;
-
+				let newSrc = event.target.href;
 				let newTitle = event.target.title;
-
-				let largeImg = document.getElementById('largeImg');
 				largeImg.src = newSrc;
 				largeImg.alt = newTitle;
-			} else if (event.target.nodeName == 'IMG') {
-				let newSrc = event.target.src;
-				let newTitle = event.target.parentNode.title;
 
-				let largeImg = document.getElementById('largeImg');
+				// TODO revisalo con closest('a'), que colle o primeiro A pai cando se pulsa nun fillo
+			} else if (event.target.nodeName == 'IMG') {
+				let newSrc = event.target.parentElement.href;
+				let newTitle = event.target.parentElement.title;
 				largeImg.src = newSrc;
 				largeImg.alt = newTitle;
 			}
-			event.target.src = oldSrc;
 		}
 		let thumbs = document.getElementById('thumbs');
 		thumbs.addEventListener('click', showBig);

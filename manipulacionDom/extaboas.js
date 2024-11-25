@@ -42,6 +42,8 @@ let filasTaboa = taboa.rows;
 for (let fila of filasTaboa) {
 	const cell = fila.cells[fila.rowIndex];
 	// TODO preguntar se solo se reprensentan os cambios feitos mediante js no editor e non é posible redirixilos ao css ou así
+
+	// Metense como estilos en liña (Mellor atacar dende clases css)
 	cell.style.backgroundColor = 'red';
 	console.log(cell);
 }

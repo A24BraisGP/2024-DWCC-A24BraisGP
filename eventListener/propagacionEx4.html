@@ -28,13 +28,16 @@
 		// Utiliza un só manexador de eventos
 
 		function exitConfirmation(event) {
-			if (event.target.nodeName == 'A' || event.target.nodeName == 'I') {
+			if (
+				event.target.nodeName == 'A' ||
+				event.target.parentElement.nodeName == 'A'
+			) {
 				let confirm = window.confirm(
-					`Quieres ir a ${event.target.innerHTML} [S-N]`
+					`Quieres ir a ${event.target.innerHTML}`
 				);
 				if (!confirm) {
 					event.preventDefault();
-					console.log('Rechazado');
+					console.log(`${event.target.innerHTML} Rechazado`);
 				}
 			}
 		}

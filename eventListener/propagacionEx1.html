@@ -4,6 +4,45 @@
 		<link rel="stylesheet" href="messages.css" />
 		<meta charset="utf-8" />
 		<title>Ex1 Propagacion</title>
+		<style>
+			body {
+				margin: 10px auto;
+				width: 470px;
+			}
+
+			h3 {
+				margin: 0;
+				padding-bottom: 0.3em;
+				padding-right: 20px;
+				font-size: 1.1em;
+			}
+
+			p {
+				margin: 0;
+				padding: 0 0 0.5em;
+			}
+
+			.pane {
+				background: #edf5e1;
+				padding: 10px 20px 10px;
+				border-top: solid 2px #c4df9b;
+				position: relative;
+			}
+
+			.remove-button {
+				position: absolute;
+				font-size: 110%;
+				top: 0;
+				color: darkred;
+				right: 10px;
+				display: block;
+				width: 24px;
+				height: 24px;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -47,12 +86,17 @@
 			//       1. Descarga o código HTML e CSS e engade o JavaScript necesario para que ao pulsar no botón [X] se elimine a mensaxe correspondente.
 			// Debes engadir un único listener e só se deben eliminar as mensaxes ao pulsar [X].
 
-			let butn = document.querySelectorAll('button');
-			butn.forEach((el) => el.addEventListener('click', eliminarMensaxe));
+			let container = document.getElementById('container');
+			container.addEventListener('click', eliminarMensaxe);
 
 			function eliminarMensaxe(event) {
-				let pane = event.target.closest('div').querySelector('p');
-				pane.innerText = '';
+				// tamén vale className == 'remove-button'
+				if (event.target.tagName == 'BUTTON') {
+					let pane = event.target.closest('div').querySelector('p');
+					pane.innerText = '';
+				} else {
+					return;
+				}
 			}
 		</script>
 	</body>

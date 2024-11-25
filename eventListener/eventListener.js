@@ -34,7 +34,7 @@ console.log('-----------------');
 // button.removeEventListener('click', () => console.log('1'));
 // button.onclick = () => console.log(2);
 
-// execútase o primeiro, o segundo non borra porque non é a mesma dirección de memoria da función e o último engade o atributo pero non executa a función
+// execútase o primeiro, o segundo non borra porque non é a mesma dirección de memoria da función e o último engade o atributo pero non executa a función. Tamén o terciero
 
 // 4. Crea un menú que se abra/colapse ao facer clic sobre el. Inicialmente o menú debe
 // estar colapsado e ao pulsar no texto “Sweeties (click me)!” deben mostrarse as
@@ -105,7 +105,7 @@ function ocultarTextoDiv() {
 function mostrarTecla(KeyboardEvent) {
 	let divText = document.getElementById('texto2');
 	divText.classList.remove('oculto');
-	divText.innerText = `A tecla que pulsaches é :  ${KeyboardEvent.key}`;
+	divText.innerText = `A tecla que pulsaches é :  ${KeyboardEvent.key} Código: ${KeyboardEvent.code}`;
 }
 document
 	.getElementById('ocultar')

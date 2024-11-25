@@ -66,18 +66,18 @@
 				let rows = document.querySelector('tbody').rows;
 				let orderedRows = Array.from(rows);
 				let th = event.target;
-				if (!th.nodeName == 'th') {
+				if (th.nodeName != 'TH') {
 					return;
 				}
-				let thIsNumber = event.target;
-				if (thIsNumber.dataset.type == 'number') {
+
+				if (th.dataset.type == 'number') {
 					orderedRows = orderedRows.sort(
 						(a, b) =>
 							parseInt(a.cells[0].innerText) -
 							parseInt(b.cells[0].innerText)
 					);
 				}
-				if (thIsNumber.dataset.type == 'string') {
+				if (th.dataset.type == 'string') {
 					orderedRows = orderedRows.sort((a, b) => {
 						const name1 = a.cells[1].innerText;
 						const name2 = b.cells[1].innerText;
@@ -97,6 +97,9 @@
 				orderedRows.forEach((el) =>
 					document.querySelector('tbody').append(el)
 				);
+				// let taboa = document.querySelector('table');
+
+				// tbaoa.tBodies[0].append(...orderedRows);
 			}
 			let thead = document.querySelector('thead').querySelector('tr');
 			thead.addEventListener('click', ordenarCol);
