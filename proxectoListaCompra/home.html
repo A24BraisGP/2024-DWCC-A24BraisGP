@@ -16,6 +16,9 @@
 			.oculto {
 				display: none;
 			}
+			.selected {
+				border: 1px solid green;
+			}
 		</style>
 	</head>
 	<body>
@@ -29,20 +32,31 @@
 				placeholder="Artigo de compra"
 			/>
 			<input type="button" name="engadir" id="engadir" value="Engadir" />
+			<input
+				type="button"
+				id="actualizar"
+				class="oculto"
+				value="Actualizar"
+			/>
+			<input
+				class="oculto"
+				type="reset"
+				value="Borrar Todo"
+				id="borrarTodo"
+			/>
 		</form>
 		<br />
 
-		<ul id="listaArtigos">
-			<li>a</li>
-		</ul>
-		<br />
-
-		<label for="filtro">Filtrado:</label>
+		<label for="filtrado">Filtrado:</label>
 		<input
 			type="text"
 			name="filtrado"
 			id="filtrado"
 			placeholder="Filtrar por: "
 		/>
+		<hr />
+
+		<br />
+		<ul id="listaArtigos"></ul>
 	</body>
 </html>
