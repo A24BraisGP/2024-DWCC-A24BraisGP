@@ -1,12 +1,17 @@
 'use strict';
 
 // Función que engade o elemento e ademais comproba se este é un duplicado recorrendo o contido da lista, se da cun duplicado alerta e sae da función
+let liArray;
+
 function engadirElemento(event) {
 	event.preventDefault();
 	let li = document.createElement('li');
-	li.innerText = uArtigo.value;
+	li.innerText = uArtigo.value.trim();
 	let check = li.innerText;
 	if (checkDuplicado(check)) {
+		let btn = document.createElement('button');
+		btn.addEventListener('click', borrarElemento);
+		btn.innerHTML = 'X';
 		li.append(btn);
 		listaArtigos.append(li);
 		borrarTodo.classList.remove('oculto');
@@ -50,7 +55,7 @@ function borrarTodoLista(event) {
 
 function filtrarLista(event) {
 	let listado = listaArtigos.querySelectorAll('li');
-	let filtro = this.value;
+	let filtro = this.value.trim();
 	listado.forEach((el) => el.classList.add('oculto'));
 	for (const element of listado) {
 		if (element.innerText.includes(filtro)) {
@@ -61,13 +66,19 @@ function filtrarLista(event) {
 
 function showActualizar(event) {
 	toggleSelected(event);
-	btnAct.classList.toggle('oculto');
+	btnAct.classList.remove('oculto');
 }
 
 function actualizarElemento(event) {
 	let novoArt = uArtigo.value;
-	let selectedLi = document.getElementsByClassName('selected')[0];
-	selectedLi.innerText = novoArt;
+	let selectedLi = document.querySelector('.selected');
+	if (checkDuplicado(novoArt)) {
+		selectedLi.innerText = novoArt;
+		let btn = document.createElement('button');
+		btn.addEventListener('click', borrarElemento);
+		btn.innerHTML = 'X';
+		selectedLi.append(btn);
+	}
 }
 
 // Esta función desetaca o elemento do UL no que se pinchou
@@ -81,18 +92,16 @@ function toggleSelected(event) {
 		}
 	}
 }
-let btn = document.createElement('button');
-btn.addEventListener('click', borrarElemento);
-btn.innerHTML = 'X';
+
 let uArtigo = document.getElementById('uArtigo');
 let engadir = document.getElementById('engadir');
 let filtrado = document.getElementById('filtrado');
 let listaArtigos = document.getElementById('listaArtigos');
 let borrarTodo = document.getElementById('borrarTodo');
 let btnAct = document.getElementById('actualizar');
-btnAct.addEventListener('click', actualizarElemento);
 
 borrarTodo.addEventListener('click', borrarTodoLista);
 engadir.addEventListener('click', engadirElemento);
 filtrado.addEventListener('input', filtrarLista);
 listaArtigos.addEventListener('click', showActualizar);
+btnAct.addEventListener('click', actualizarElemento);
