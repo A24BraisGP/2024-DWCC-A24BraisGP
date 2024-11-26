@@ -17,15 +17,19 @@ form.addEventListener('submit', showAllValues);
 
 function showAllValues(event) {
 	event.preventDefault();
-	console.log('O nome é:' + document.getElementById('uName').value);
-	console.log('O seleccionado é:' + document.getElementById('uSelect').value);
+	console.log('O nome é: ' + document.getElementById('uName').value);
 	console.log(
-		'O radio seleccionado é:' + document.getElementById('uRadio').checked
-			? 'radio 1'
-			: 'radio 2'
+		'O seleccionado é: ' + document.getElementById('uSelect').value
 	);
 	console.log(
-		document.getElementById('check1').checked ? 'check 1' : 'check 2'
+		'O radio seleccionado é: ' +
+			(document.getElementById('uRadio').checked ? 'radio 1' : 'radio 2')
 	);
-	console.log('O area ten escrito:' + document.getElementById('area').value);
+	let check1 = document.getElementById('check1').checked;
+	let check2 = document.getElementById('check2').checked;
+	console.log(
+		(document.getElementById('check1').checked ? 'check 1' : '') +
+			(document.getElementById('check2').checked ? ' check 2' : '')
+	);
+	console.log('O area ten escrito: ' + document.getElementById('area').value);
 }
