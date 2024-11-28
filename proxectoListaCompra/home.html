@@ -13,6 +13,9 @@
 
 		<script src="proxectoListaCompra.js" defer></script>
 		<style>
+			body {
+				background-color: aliceblue;
+			}
 			.oculto {
 				display: none;
 			}
@@ -22,41 +25,68 @@
 		</style>
 	</head>
 	<body>
-		<h1>Lista da compra</h1>
-		<form action="">
-			<label for="uArtigo">Artigo: </label>
+		<div class="container">
+			<br /><br />
+			<h1>
+				<img
+					src="new-year-resolutions.png"
+					class="rounded float-start"
+					alt="icona da lista da compra"
+					height="40"
+					width="40"
+				/>
+				Lista da compra
+			</h1>
+			<form action="">
+				<label for="uArtigo" class="form-label">Artigo: </label>
+				<br />
+				<input
+					type="text"
+					name="uArtigo"
+					id="uArtigo"
+					placeholder="Artigo de compra"
+					class="form-control"
+				/>
+				<br />
+				<div class="mx-auto p-2" style="width: 200px">
+					<input
+						type="button"
+						name="engadir"
+						id="engadir"
+						value="Engadir"
+						class="btn btn-primary"
+					/>
+					<input
+						type="button"
+						id="actualizar"
+						class="oculto btn btn-info"
+						value="Actualizar"
+					/>
+				</div>
+			</form>
+			<br />
+
+			<label for="filtrado" class="form-label">Filtrado:</label>
 			<input
 				type="text"
-				name="uArtigo"
-				id="uArtigo"
-				placeholder="Artigo de compra"
+				name="filtrado"
+				id="filtrado"
+				placeholder="Filtrar por: "
+				class="form-control"
 			/>
-			<input type="button" name="engadir" id="engadir" value="Engadir" />
-			<input
-				type="button"
-				id="actualizar"
-				class="oculto"
-				value="Actualizar"
-			/>
-			<input
-				class="oculto"
-				type="reset"
-				value="Borrar Todo"
-				id="borrarTodo"
-			/>
-		</form>
-		<br />
+			<hr class="border border-success border-3 opacity-75" />
 
-		<label for="filtrado">Filtrado:</label>
-		<input
-			type="text"
-			name="filtrado"
-			id="filtrado"
-			placeholder="Filtrar por: "
-		/>
-		<hr />
-
-		<br />
-		<ul id="listaArtigos"></ul>
+			<br />
+			<ul id="listaArtigos" class="list-group"></ul>
+			<br />
+			<div class="mx-auto p-2" style="width: 200px">
+				<input
+					class="oculto btn btn-danger"
+					type="reset"
+					value="Borrar Todo"
+					id="borrarTodo"
+				/>
+			</div>
+		</div>
 	</body>
 </html>
