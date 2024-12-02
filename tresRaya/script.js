@@ -49,9 +49,19 @@ tabla.addEventListener('click', marcarCasilla);
 // TODO Creo que se pode facer co rowIndex  propiedades da táboa HTML
 function comprobarTablero(fila, celda, valorCasilla) {
 	if (fila == 0) {
+		console.log('fila 0');
+
+		if (tablero[fila][celda + 1] == valorCasilla) {
+			console.log('izquierda');
+		}
+		if (tablero[fila + 1][celda] == valorCasilla) {
+			console.log(abajo);
+		}
 	}
 	if (fila == 1) {
+		console.log('fila 1');
 	}
 	if (fila == 2) {
+		console.log('fila 2');
 	}
 }
