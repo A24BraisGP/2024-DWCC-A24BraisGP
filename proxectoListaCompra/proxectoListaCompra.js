@@ -42,6 +42,7 @@ function checkDuplicado(check) {
 
 // Collemos o pai máis próximo do botón pulsado (O li que queremos borrar) e, se o usuario confirma, bórrase co remove, logo diso, actualizamos o array co que estamos a traballar no localStorage sen o elemento borrado
 function borrarElemento(event) {
+	event.stopPropagation();
 	btnAct.classList.add('oculto');
 	engadir.classList.remove('oculto');
 	let liPai = event.target.closest('li');

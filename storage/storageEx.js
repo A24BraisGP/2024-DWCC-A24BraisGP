@@ -27,11 +27,18 @@ function saveData(event) {
 	arrayToStore[5] = check2.checked;
 
 	localStorage.setItem('array', JSON.stringify(arrayToStore));
-	print(localStorage);
+	console.log(localStorage);
 }
 
-if (localStorage.lenght > 0) {
+if (localStorage.length > 0) {
 	let arrayToPrint = JSON.parse(localStorage.getItem('array'));
 	arrayToStore = [...arrayToPrint];
-	print(arrayToPrint);
+	nome.value = arrayToStore[0];
+	apelidos.value = arrayToStore[1];
+	sexH.checked = arrayToStore[2];
+	sexM.checked = arrayToStore[3];
+	check1.checked = arrayToStore[4];
+	check2.checked = arrayToStore[5];
+
+	console.log(arrayToPrint);
 }
