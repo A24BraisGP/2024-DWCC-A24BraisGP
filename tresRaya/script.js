@@ -44,13 +44,13 @@ function resetPagina(event) {
 
 function marcarCasilla(event) {
 	let casilla = event.target;
-	let posicionFila = event.target.closest('tr').rowIndex;
-	let posicionCelda = casilla.cellIndex;
-	let posicionFinal = `[${posicionFila} , ${posicionCelda}]`;
 
 	if (casilla.innerText == 'X' || casilla.innerText == 'O') {
 		return;
 	}
+	let posicionFila = event.target.closest('tr').rowIndex;
+	let posicionCelda = casilla.cellIndex;
+	let posicionFinal = `[${posicionFila} , ${posicionCelda}]`;
 
 	let li = document.createElement('li');
 	li.innerText = `El jugador ${turno} ha puesto su casilla en la posición ${posicionFinal}`;
@@ -103,12 +103,12 @@ function comprobarTablero(valorCasilla) {
 				break;
 			}
 		}
-		if (index == 2) {
+
+		if (index == 3) {
 			break;
 		}
 	}
-	console.log('index ' + index);
-	if (index == 2) {
+	if (index == 3) {
 		win = true;
 		imprimirResultado(win, turno);
 	}
