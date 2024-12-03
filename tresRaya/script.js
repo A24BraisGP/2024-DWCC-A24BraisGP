@@ -72,7 +72,7 @@ function marcarCasilla(event) {
 		casilla.style.backgroundColor = 'lightgreen';
 		turno = 'O';
 	}
-	tablero[turnCount] = casilla.innerText;
+	tablero[casilla.dataset.coordenada] = casilla.innerText;
 	turnCount++;
 	if (turnCount >= 5) {
 		comprobarTablero(casilla.innerText);
