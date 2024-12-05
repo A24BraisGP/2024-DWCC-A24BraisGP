@@ -59,7 +59,7 @@ function borrarElemento(event) {
 		listStorage.setItem('array', JSON.stringify(arrayToStore));
 	}
 	// Se non quedan elementos li, ocultamos o botón de borralos todos
-	if (listaArtigos.querySelectorAll('li').length != 0) {
+	if (listaArtigos.querySelectorAll('li').length == 0) {
 		borrarTodo.classList.add('oculto');
 	}
 }
@@ -151,31 +151,36 @@ let borrarTodo = document.getElementById('borrarTodo');
 let btnAct = document.getElementById('actualizar');
 let indexToAct = 0;
 
-borrarTodo.addEventListener('click', borrarTodoLista);
-engadir.addEventListener('click', engadirElemento);
-filtrado.addEventListener('input', filtrarLista);
-listaArtigos.addEventListener('click', showActualizar);
-btnAct.addEventListener('click', actualizarElemento);
+init();
 
-// Finalmente, comprobamos se a storage ten máis dun elemento, accedemos á ela ao recargo da páxina e co parse lemos os elementos do array.
+// Inicialización da app
+function init() {
+	borrarTodo.addEventListener('click', borrarTodoLista);
+	engadir.addEventListener('click', engadirElemento);
+	filtrado.addEventListener('input', filtrarLista);
+	listaArtigos.addEventListener('click', showActualizar);
+	btnAct.addEventListener('click', actualizarElemento);
 
-if (listStorage.length > 0) {
-	borrarTodo.classList.remove('oculto');
+	// Finalmente, comprobamos se a storage ten máis dun elemento, accedemos á ela ao recargo da páxina e co parse lemos os elementos do array.
 
-	if (listStorage.getItem('array')) {
-		let arrayToPrint = JSON.parse(listStorage.getItem('array'));
-		// Gardamos no array local o anterior do storage para sobreescribilo máis adiante co actualizado
-		arrayToStore = [...arrayToPrint];
-		//Crea e engade os elementos li acorde coas strings do storage
-		for (let index = 0; index < arrayToPrint.length; index++) {
-			let li = document.createElement('li');
-			li.classList.add('list-group-item');
-			li.innerText = arrayToPrint[index];
-			let btn = document.createElement('button');
-			btn.addEventListener('click', borrarElemento);
-			btn.innerHTML = 'X';
-			li.append(btn);
-			listaArtigos.append(li);
+	if (listStorage.length > 0) {
+		borrarTodo.classList.remove('oculto');
+
+		if (listStorage.getItem('array')) {
+			let arrayToPrint = JSON.parse(listStorage.getItem('array'));
+			// Gardamos no array local o anterior do storage para sobreescribilo máis adiante co actualizado
+			arrayToStore = [...arrayToPrint];
+			//Crea e engade os elementos li acorde coas strings do storage
+			for (let index = 0; index < arrayToPrint.length; index++) {
+				let li = document.createElement('li');
+				li.classList.add('list-group-item');
+				li.innerText = arrayToPrint[index];
+				let btn = document.createElement('button');
+				btn.addEventListener('click', borrarElemento);
+				btn.innerHTML = 'X';
+				li.append(btn);
+				listaArtigos.append(li);
+			}
 		}
 	}
 }
