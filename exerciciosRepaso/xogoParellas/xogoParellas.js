@@ -1,20 +1,34 @@
 'use strict';
 
 const div = document.querySelector('div');
-let filas = 2;
-let columnas = 4;
+let filas = parseInt(prompt('Cuántas filas tiene tu tabla'));
+let columnas = parseInt(prompt('Cuántas columnas tiene tu tabla'));
 const letras = crearLetras();
 const letrasDes = desordenarLetras(letras);
+let reset = document.querySelector('button');
+const textoCartas = [...letrasDes];
+const randIndList = [];
+let coordenada = 0;
+let intento = 0;
+const resultado = document.querySelector('p');
+console.log(letras);
+console.log(letrasDes);
+console.log();
 
+for (let index = 0; index < letrasDes.length; index++) {
+	randIndList.push(index);
+}
+
+randIndList.sort((a, b) => {
+	return Math.random() * 1 > 0.5 ? 1 : -1;
+});
+
+reset.addEventListener('click', resetGame);
 div.addEventListener('click', darVoltaCarta);
 createTable();
 
 //Función que crea a táboa acorde ao número de filas e columnas solicitadas
 function createTable() {
-	// pídese o número de filas
-	// filas = parseInt(prompt('Cuántas filas tiene tu tabla'));
-	// pídese o número de columnas
-	// columnas = parseInt(prompt('Cuántas columnas tiene tu tabla'));
 	let table = document.createElement('table');
 	table.classList.add('table');
 	let tbody = document.createElement('tbody');
@@ -29,12 +43,13 @@ function createTable() {
 	div.append(table);
 }
 
-function createTd(index, indexC) {
+function createTd() {
 	let td = document.createElement('td');
-	td.innerText = 'X';
+	td.innerText = ' X';
+
 	td.classList.add('table-primary');
-	td.dataset.fila = index;
-	td.dataset.columna = indexC;
+	td.dataset.coordenada = coordenada;
+	coordenada++;
 	return td;
 }
 
@@ -55,15 +70,17 @@ function crearLetras() {
 
 //Dobrar as letras a fin de ter dúas iguais. Como xa veñen desordeadas da función anterior basta con sobreescribir dúas e remexer
 function desordenarLetras(letras) {
+	// Dobramos o array orixinal creando un co dobre de tamaño e metendo en cada posición o valor do primeiro na posición orixinal e na equivalente + o seu tamaño total (o mesmo valor na posición 0 e 0+n e así)
 	let letrasDes = new Array(2 * letras.length).fill('a');
 	for (let index = 0; index < letras.length; index++) {
 		letrasDes[index] = letras[index];
 		letrasDes[index + letras.length] = letras[index];
 	}
+
+	// Algoritmo para desordear e barallar as letras random. Sort pero devolve 1 ou -1 random
 	letrasDes.sort((a, b) => {
 		return Math.random() * 1 > 0.5 ? 1 : -1;
 	});
-	console.log(letrasDes);
 
 	return letrasDes;
 }
@@ -79,14 +96,19 @@ function darVoltaCarta(event) {
 			return;
 		}
 		carta.classList.replace('table-primary', 'table-danger');
-		carta.innerText = 'proba';
-
+		asignarValor(carta);
 		if (document.querySelectorAll('.table-danger').length >= 2) {
 			checkParella();
 		}
 		checkVolteadas();
 	} else {
 		return;
+	}
+}
+
+function asignarValor(carta) {
+	if (carta.classList.contains('table-danger')) {
+		carta.innerText = textoCartas[randIndList[carta.dataset.coordenada]];
 	}
 }
 
@@ -102,18 +124,51 @@ function checkVolteadas() {
 		});
 		volteadas = true;
 	}
+	if (intento == 3) {
+		perderGame();
+	}
 	return volteadas;
 }
 
 function checkParella() {
 	let cartasVolteadas = document.querySelectorAll('.table-danger');
-	console.log(cartasVolteadas.item(0).innerText);
-	console.log(cartasVolteadas.item(1).innerText);
 	if (
 		cartasVolteadas.item(0).innerText == cartasVolteadas.item(1).innerText
 	) {
 		cartasVolteadas.forEach((el) => {
-			el.classList.add('table-info');
+			el.classList.replace('table-danger', 'table-info');
 		});
+	} else {
+		cartasVolteadas.forEach((el) => {
+			el.classList.replace('table-danger', 'table-primary');
+			el.innerText = 'X';
+		});
+		intento++;
 	}
+	if (document.querySelectorAll('.table-info') == coordenada) {
+		ganarGame();
+	}
+}
+
+function resetGame(event) {
+	event.preventDefault();
+	location.reload();
+}
+
+function perderGame() {
+	resultado.innerText = 'YOU LOST';
+	let cartas = document.querySelectorAll('td');
+
+	cartas.forEach((el) => {
+		if (el.classList.contains('table-primary')) {
+			el.classList.replace('table-primary', 'table-danger');
+		} else {
+			el.classList.add('table-danger');
+		}
+	});
+	console.log(cartas);
+}
+
+function ganarGame() {
+	resultado.innerText = 'YOU WON';
 }
