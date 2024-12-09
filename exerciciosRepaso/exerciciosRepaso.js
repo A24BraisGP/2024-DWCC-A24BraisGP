@@ -20,7 +20,7 @@ anchura.addEventListener('input', modificarDiv);
 console.log('-----------');
 
 // 2. Crea unha páxina web que conteña un elemento <div> con un tamaño preestablecido.
-// Cando se pulse no div, este debe ser substituído por un textarea inicializado co textoque había no <div> e co mesmo tamaño que o <div>.
+// Cando se pulse no div, este debe ser substituído por un textarea inicializado co texto que había no <div> e co mesmo tamaño que o <div>.
 // O elemento textarea debe permitir editar o texto e cando se pulse a tecla “Enter” ou perda o foco, o textarea debe substituírse polo div, establecendo o contido deste ao texto que había na textarea. É dicir, ao pulsar o div, o seu texto convértese en editable
 
 function divEditable(event) {
@@ -38,6 +38,8 @@ function textareaOut(event) {
 }
 let textarea = document.getElementById('textEx2');
 let div2 = document.getElementById('divEx2');
+textarea.style.maxWidth = div2.offsetWidth;
+textarea.style.maxHeight = div2.offsetHeight;
 
 div2.addEventListener('click', divEditable);
 textarea.addEventListener('blur', textareaOut);
@@ -63,3 +65,64 @@ let reloxo = document.getElementById('reloxo');
 setInterval(mostrarHora);
 
 console.log('--------------');
+
+// 6. Crea unha táboa que teña celas editables ao facer clic sobre elas.
+// a. Ao facer clic, a cela convértese en editable (aparece un textarea dentro) e pódese cambiar o HTML. Non debe haber cambios de tamaño na cela manténdose o ancho e alto.
+// b. Usa un só manexador de eventos para a táboa, é dicir, non engadas un manexador para cada cela da táboa.
+// c. Cando se pulse “Enter” o contido da edición gárdase na cela. Se a cela perde o foco, non se garda o contido editado, senón que se recupera o que había inicialmente.
+
+// TODO revisar exercicio en casa
+function textEditor(event) {
+	if (event.target.nodeName == 'TD') {
+		console.log(event.target);
+		if (!event.target.firstElementChild) {
+			let celda = event.target;
+			text = celda.innerHTML;
+			console.log(text);
+
+			modificarCelda(celda, text);
+		}
+	}
+}
+
+function celdaOutEnter(event) {
+	if (event.key === 'Enter') {
+		console.log('enter');
+
+		event.preventDefault();
+		textArea.closest('td').innerHTML = textArea.value;
+		outBlur = false;
+		textArea.remove();
+	}
+}
+
+function celdaOutBlur(event) {
+	console.log('blur');
+
+	if (textArea) {
+		outBlur = true;
+		textArea.remove();
+	}
+}
+
+function modificarCelda(celda, text) {
+	if (!textArea) {
+		textArea = document.createElement('textarea');
+	}
+	if (outBlur) {
+		celda.innerText = text;
+	} else {
+		textArea.value = celda.innerHTML;
+		celda.innerText = '';
+	}
+	textArea.value = '';
+	celda.append(textArea);
+}
+
+let outBlur = false;
+let textArea = document.createElement('textarea');
+textArea.addEventListener('keydown', celdaOutEnter);
+textArea.addEventListener('blur', celdaOutBlur);
+let table = document.querySelector('table');
+table.addEventListener('click', textEditor);
+let text = '';

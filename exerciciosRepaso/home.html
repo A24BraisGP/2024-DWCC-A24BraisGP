@@ -11,12 +11,21 @@
 				height: 100px;
 			}
 			.ex2 {
+				resize: none;
 				background-color: aliceblue;
 				width: 150px;
 				height: 150px;
 			}
 			.oculto {
 				display: none;
+			}
+			table {
+				border: 1px solid black;
+				text-align: center;
+			}
+			tr > td {
+				padding: 15px;
+				border: 1px solid black;
 			}
 		</style>
 		<title>Repaso</title>
@@ -34,11 +43,31 @@
 		<h2>Exercicio 2</h2>
 		<div id="divEx2" class="ex2">Texto de Exemplo</div>
 		<textarea name="textEx2" id="textEx2" class="ex2 oculto"></textarea>
+
 		<br />
 		<br />
 		<h2>Exercicio 3</h2>
 		<div id="divEx3">
 			<p id="reloxo"></p>
 		</div>
+
+		<h2>Exercicio 6</h2>
+		<table>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+			</tr>
+		</table>
 	</body>
 </html>

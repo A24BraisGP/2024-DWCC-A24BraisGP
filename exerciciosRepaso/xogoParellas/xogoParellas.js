@@ -1,8 +1,11 @@
 'use strict';
 
 const div = document.querySelector('div');
-let filas = parseInt(prompt('Cuántas filas tiene tu tabla'));
-let columnas = parseInt(prompt('Cuántas columnas tiene tu tabla'));
+let filas = 2;
+// Podemos usar esta liña para pedilo tamaño da táboa por teclado (pode dar problemas de lóxica)
+// parseInt(prompt('Cuántas filas tiene tu tabla'));
+let columnas = 4;
+// parseInt(prompt('Cuántas columnas tiene tu tabla'));
 const letras = crearLetras();
 const letrasDes = desordenarLetras(letras);
 let reset = document.querySelector('button');
@@ -13,7 +16,6 @@ let intento = 0;
 const resultado = document.querySelector('p');
 console.log(letras);
 console.log(letrasDes);
-console.log();
 
 for (let index = 0; index < letrasDes.length; index++) {
 	randIndList.push(index);
@@ -35,7 +37,7 @@ function createTable() {
 	for (let index = 0; index < filas; index++) {
 		let tr = document.createElement('tr');
 		for (let indexC = 0; indexC < columnas; indexC++) {
-			tr.append(createTd(index, indexC));
+			tr.append(createTd());
 		}
 		tbody.append(tr);
 	}
@@ -62,7 +64,6 @@ function crearLetras() {
 	for (let index = 0; index < columnas; index++) {
 		let charIndex = Math.floor(Math.random() * charArr.length);
 		letras[index] = charArr.at(charIndex);
-		charArr.splice(charIndex, 1);
 	}
 
 	return letras;
@@ -93,7 +94,17 @@ function darVoltaCarta(event) {
 			carta.classList.contains('table-danger') ||
 			carta.classList.contains('table-info')
 		) {
+			document.querySelectorAll('.table-danger').forEach((el) => {
+				el.classList.replace('table-danger', 'table-primary');
+				el.innerText = 'X';
+			});
 			return;
+		}
+		if (document.querySelectorAll('.table-danger').length == 2) {
+			document.querySelectorAll('.table-danger').forEach((el) => {
+				el.classList.replace('table-danger', 'table-primary');
+				el.innerText = 'X';
+			});
 		}
 		carta.classList.replace('table-primary', 'table-danger');
 		asignarValor(carta);
@@ -107,12 +118,12 @@ function darVoltaCarta(event) {
 }
 
 function asignarValor(carta) {
-	if (carta.classList.contains('table-danger')) {
-		carta.innerText = textoCartas[randIndList[carta.dataset.coordenada]];
-	}
+	carta.innerText = textoCartas[randIndList[carta.dataset.coordenada]];
+	console.log(carta.innerText);
 }
 
 // TODO darlle consistencia ao valor das cartas volteadas
+// Feito co array auxiliar de indexes aleatorios que vai conxunto á coordeada da celda da táboa
 function checkVolteadas() {
 	let cartasVolteadas = document.querySelectorAll('.table-danger').length;
 	let todasCartas = document.querySelectorAll('td');
@@ -139,13 +150,12 @@ function checkParella() {
 			el.classList.replace('table-danger', 'table-info');
 		});
 	} else {
-		cartasVolteadas.forEach((el) => {
-			el.classList.replace('table-danger', 'table-primary');
-			el.innerText = 'X';
-		});
 		intento++;
 	}
-	if (document.querySelectorAll('.table-info') == coordenada) {
+	console.log(coordenada);
+	console.log(document.querySelectorAll('.table-info').length);
+
+	if (document.querySelectorAll('.table-info').length == coordenada) {
 		ganarGame();
 	}
 }
@@ -165,6 +175,7 @@ function perderGame() {
 		} else {
 			el.classList.add('table-danger');
 		}
+		el.innerText = textoCartas[randIndList[el.dataset.coordenada]];
 	});
 	console.log(cartas);
 }
