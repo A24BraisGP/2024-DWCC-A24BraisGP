@@ -91,6 +91,7 @@
 
 			function eliminarMensaxe(event) {
 				// tamén vale className == 'remove-button'
+
 				if (event.target.tagName == 'BUTTON') {
 					let pane = event.target.closest('div').querySelector('p');
 					pane.innerText = '';

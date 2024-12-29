@@ -13,7 +13,7 @@ console.log(pharagraphsCollection);
 
 // ● Todos os parágrafos dentro do div con id “lipsum”.
 
-let pharagraphsInLipsum = document.querySelectorAll('#lipsums p');
+let pharagraphsInLipsum = document.querySelectorAll('#lipsum p');
 console.log(pharagraphsInLipsum);
 
 // ● O formulario
