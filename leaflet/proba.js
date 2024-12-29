@@ -48,7 +48,7 @@ let popup = L.popup()
 let legend = L.control({ position: 'bottomleft' });
 
 legend.onAdd = function (map) {
-	var div = L.DomUtil.create('div', 'legend');
+	let div = L.DomUtil.create('div', 'legend');
 	div.innerHTML =
 		'<p><b>Simple shapes in Leaflet</b></p><hr>' +
 		'Created with the Leaflet library<br>';
