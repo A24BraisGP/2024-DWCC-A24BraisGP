@@ -22,12 +22,12 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // b. No lateral da páxina, haberá unha zona reservada para mostrar o listado de
 // puntos creados no mapa.
+let ul = document.createElement('ul');
 
 let legend = L.control({ position: 'bottomleft' });
 legend.onAdd = function (map) {
 	let div = L.DomUtil.create('div', 'legend');
 	div.innerText = 'Marker list: ';
-	let ul = document.createElement('ul');
 	div.append(ul);
 	return div;
 };
@@ -38,10 +38,14 @@ legend.addTo(map);
 // polo menos, unha caixa de texto para escribir unha descrición do punto. A
 // caixa de texto debe ter o foco de forma automática. Podes engadir máis
 // campos ao formulario para describir mellor o novo punto.
+let eventLat;
+let evenLng;
 
 function showForm(event) {
 	form.classList.remove('oculto');
 	document.querySelector('#markerName').focus();
+	eventLat = event.latlng.lat;
+	evenLng = event.latlng.lng;
 }
 
 let form = document.querySelector('form');
@@ -55,16 +59,30 @@ map.on('click', showForm);
 
 function addMarker(event) {
 	if (event.key == 'Enter') {
+		console.log('aaaaaaaaaaaa');
+
 		event.preventDefault();
 		let name = document.querySelector('#markerName').value;
 		let des = document.querySelector('#markerDes').value;
-		createMarker(name, des);
+
+		createMarker(eventLat, evenLng, name, des);
+		updateList(name, des);
 		document.querySelector('form').classList.add('oculto');
 	} else {
 		return;
 	}
 }
 
-function createMarker(name, description) {
-	let marker = L.marker();
+function createMarker(eventLat, eventLng, name, description) {
+	let marker = L.marker([eventLat, eventLng]).addTo(map);
+	let popup = L.popup();
+	popup.setContent(name + '<hr>' + description);
+	marker.bindPopup(popup);
+	arrayToStore.push(marker);
+}
+
+function updateList(name, description) {
+	let li = document.createElement('li');
+	li.innerText = `Name : ${name} Description: ${description}`;
+	ul.append(li);
 }

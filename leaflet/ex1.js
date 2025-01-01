@@ -13,9 +13,9 @@ if ('geolocation' in navigator) {
 			console.log(posicion);
 			// desestruturación de obxectos
 			const { latitude, longitude } = posicion.coords;
-			console.log(`latitude: ${latitude}, lonxitude: ${longitude}`);
 			lat = latitude;
 			lon = longitude;
+			console.log(`latitude: ${lat}, lonxitude: ${lon}`);
 		},
 		function (error) {
 			console.log(`ERROR(${error.code}): ${error.message}`);
@@ -54,4 +54,4 @@ setTimeout(() => {
 		);
 		marker.bindPopup(popup);
 	}
-}, 10);
+}, 1000);
