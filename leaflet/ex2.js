@@ -1,11 +1,14 @@
 'use strict';
 let arrayToStore = [];
-localStorage.setItem('array', JSON.stringify(arrayToStore));
+// localStorage.setItem('array', JSON.stringify(arrayToStore));
 
-if (localStorage.length > 0) {
-	const arrayToPrint = JSON.parse(localStorage.getItem('array'));
-	arrayToStore = [...arrayToPrint];
-}
+// if (localStorage.length > 0) {
+// 	if (localStorage.getItem('array')) {
+// 		const arrayToPrint = JSON.parse(localStorage.getItem('array'));
+// 		arrayToStore = [...arrayToPrint];
+// 		console.log(arrayToPrint);
+// 	}
+// }
 
 //a. Inicialmente debe mostrar un mapa centrado en Galicia ou Santiago de Compostela, o que ti escollas.
 
@@ -59,8 +62,6 @@ map.on('click', showForm);
 
 function addMarker(event) {
 	if (event.key == 'Enter') {
-		console.log('aaaaaaaaaaaa');
-
 		event.preventDefault();
 		let name = document.querySelector('#markerName').value;
 		let des = document.querySelector('#markerDes').value;
@@ -79,6 +80,7 @@ function createMarker(eventLat, eventLng, name, description) {
 	popup.setContent(name + '<hr>' + description);
 	marker.bindPopup(popup);
 	arrayToStore.push(marker);
+	localStorage.setItem('array', JSON.stringify(arrayToStore));
 }
 
 function updateList(name, description) {
