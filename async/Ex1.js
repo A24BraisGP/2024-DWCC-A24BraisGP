@@ -27,27 +27,31 @@ intervalButton.addEventListener('click', changeColor);
 stopButton.addEventListener('click', stopChangeColor);
 
 function changeColor(event) {
-	colorIntervalID = setInterval(() => {
-		setTimeout(() => {
-			title.style.color = 'orange';
-		}, 500);
-		setTimeout(() => {
-			title.style.color = 'red';
+	if (!colorIntervalID) {
+		colorIntervalID = setInterval(() => {
+			setTimeout(() => {
+				// Mellor a través de clases, solo con un intervalo sen timeouts. Pouco eficiente
+				title.style.color = 'orange';
+			}, 500);
+			setTimeout(() => {
+				title.style.color = 'red';
+			}, 1000);
 		}, 1000);
-	}, 1000);
+	}
 }
 
 function stopChangeColor(event) {
 	clearInterval(colorIntervalID);
+	colorIntervalID = null;
 }
 
 // 3. Busca unha imaxe grande en internet para probar que tarda tempo en descargarse.
 // Carga esa imaxe remota dende JavaScript. Cando a imaxe estea cargada, mostra unha mensaxe en consola
 
 let img = document.createElement('img');
+document.body.append(img);
 img.src =
 	'https://upload.wikimedia.org/wikipedia/commons/6/6d/Praia_Area_Grande_02-01_O_Grove.jpg';
-document.body.append(img);
 
 img.addEventListener('load', function () {
 	console.log('Imaxe cargada');
