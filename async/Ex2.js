@@ -9,6 +9,7 @@ function showNames(response) {
 	let titleNames = document.createElement('h3');
 	titleNames.innerText = 'Nomes Gatiños';
 	let textNames = document.createElement('p');
+	textNames.innerText += 'Os nomes das gatas son: ';
 	let count = 0;
 	for (const cat of response) {
 		if (count === response.length - 1) {
@@ -16,9 +17,9 @@ function showNames(response) {
 				0,
 				textNames.innerText.length - 2
 			);
-			textNames.innerText += ` e ${cat.name}`;
+			textNames.innerText += ` e ${cat.name} [${cat.breed}]`;
 		} else {
-			textNames.innerText += `${cat.name} , `;
+			textNames.innerText += `${cat.name} [${cat.breed}] , `;
 			count++;
 		}
 	}
