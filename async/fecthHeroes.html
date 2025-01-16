@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			/* || general styles */
+
+			html {
+				font-family: 'helvetica neue', helvetica, arial, sans-serif;
+			}
+
+			body {
+				width: 800px;
+				margin: 0 auto;
+			}
+
+			h1,
+			h2 {
+				font-family: 'Faster One', cursive;
+			}
+
+			/* header styles */
+
+			h1 {
+				font-size: 4rem;
+				text-align: center;
+			}
+
+			header p {
+				font-size: 1.3rem;
+				font-weight: bold;
+				text-align: center;
+			}
+
+			/* section styles */
+
+			section article {
+				width: 33%;
+				float: left;
+			}
+
+			section p {
+				margin: 5px 0;
+			}
+
+			section ul {
+				margin-top: 0;
+			}
+
+			h2 {
+				font-size: 2.5rem;
+				letter-spacing: -5px;
+				margin-bottom: 10px;
+			}
+		</style>
+		<script defer>
+			'use strict';
+			function showResponse(response) {
+				actHeader(response);
+				actSection(response);
+			}
+
+			function actHeader(response) {
+				let header = document.querySelector('header');
+				let title = document.createElement('h1');
+				let text = document.createElement('p');
+				title.innerText = response.squadName;
+				text.innerText = `Hometown: ${response.homeTown} // Formed: ${response.formed}`;
+				header.append(title, text);
+			}
+
+			function actSection(response) {
+				let section = document.querySelector('section');
+				for (const hero of response.members) {
+					let article = document.createElement('article');
+					let titleHero = document.createElement('h2');
+					titleHero.innerText = hero.name;
+					let secretIdentity = document.createElement('p');
+					secretIdentity.innerText = `Secret Identity: ${hero.secretIdentity}`;
+					let age = document.createElement('p');
+					age.innerText = `Age: ${hero.age}`;
+					let superPowers = document.createElement('p');
+					hero.powers.length > 0
+						? (superPowers.innerText = 'SuperPowers:')
+						: (superPowers.innerText = '');
+					let powerList = document.createElement('ul');
+					hero.powers.forEach((el) => {
+						let powerLi = document.createElement('li');
+						powerLi.innerText = el;
+						powerList.append(powerLi);
+					});
+					article.append(
+						titleHero,
+						secretIdentity,
+						age,
+						superPowers,
+						powerList
+					);
+					section.append(article);
+				}
+			}
+			let promHero = fetch(
+				'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json'
+			);
+			promHero
+				.then((response) => response.json())
+				.then((data) => showResponse(data));
+		</script>
+	</head>
+	<body>
+		<header></header>
+
+		<section></section>
+	</body>
+</html>

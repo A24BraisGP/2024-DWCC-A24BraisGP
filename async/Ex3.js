@@ -29,11 +29,11 @@ function actSection(response) {
 			? (superPowers.innerText = 'SuperPowers:')
 			: (superPowers.innerText = '');
 		let powerList = document.createElement('ul');
-		for (const power of hero.powers) {
+		hero.powers.forEach((el) => {
 			let powerLi = document.createElement('li');
-			powerLi.innerText = power;
+			powerLi.innerText = el;
 			powerList.append(powerLi);
-		}
+		});
 		article.append(titleHero, secretIdentity, age, superPowers, powerList);
 		section.append(article);
 	}
