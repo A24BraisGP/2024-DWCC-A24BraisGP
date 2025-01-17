@@ -89,4 +89,5 @@ promUser
 			console.log('BAD BAD PETITION');
 		} else return response.json();
 	})
+	.catch((error) => console.log(error))
 	.then((data) => showUser(data));
