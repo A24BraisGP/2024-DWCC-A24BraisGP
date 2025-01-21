@@ -56,7 +56,7 @@ function crearBoton(toDo) {
 	newEntry.classList.add('btn');
 	newEntry.classList.add('btn-outline-info');
 	newEntry.addEventListener('click', completarToDo);
-	newEntry.addEventListener('contextmenu', disableCompletar);
+	newEntry.addEventListener('auxclick', disableCompletar);
 	newEntry.style.margin = '5px';
 	newEntry.dataset.toDoId = toDo.id;
 	newEntry.innerText = toDo.title;
@@ -68,7 +68,7 @@ function crearBotonDeInput(toDo) {
 	newEntry.classList.add('btn');
 	newEntry.classList.add('btn-outline-info');
 	newEntry.addEventListener('click', completarToDo);
-	newEntry.addEventListener('contextmenu', disableCompletar);
+	newEntry.addEventListener('auxclick', disableCompletar);
 	newEntry.style.margin = '5px';
 	newEntry.dataset.toDoId = id;
 	newEntry.innerText = toDo;
