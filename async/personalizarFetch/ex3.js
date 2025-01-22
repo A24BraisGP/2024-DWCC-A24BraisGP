@@ -94,3 +94,5 @@ function mostrarPokemon(dataPokemon, dataAbility) {
 	divImg.append(pokeImg);
 	console.log(dataPokemon);
 }
+
+//TODO poñer ligazón nas habilidades a api
