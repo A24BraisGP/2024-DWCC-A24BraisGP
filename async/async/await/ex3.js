@@ -12,7 +12,7 @@ let img = document.querySelector('img');
 buttonBuscar.addEventListener('click', buscarUsuario);
 
 const octokit = new Octokit({
-	auth: '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',
+	auth: '-',
 });
 
 const res = await octokit.request('GET /user', {
