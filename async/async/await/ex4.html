@@ -11,13 +11,34 @@
 			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 			crossorigin="anonymous"
 		/>
+		<style>
+			tr,
+			td {
+				border: 1px dotted black;
+				padding: 3px;
+				text-align: center;
+			}
+
+			tr:hover {
+				background-color: aliceblue;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="d-flex container mx-auto justify-content-center">
 			<input type="text" id="buscarMun" name="buscarMun" />
 		</div>
 		<div class="d-flex container mx-auto justify-content-center">
-			<table class="table table-striped-columns"></table>
+			<table class="table table-striped-columns">
+				<thead>
+					<th>Capitalidade</th>
+					<th>Denominación</th>
+					<th>Densidade</th>
+					<th>Habitantes</th>
+					<th>Superficie</th>
+				</thead>
+				<tr></tr>
+			</table>
 		</div>
 	</body>
 </html>
