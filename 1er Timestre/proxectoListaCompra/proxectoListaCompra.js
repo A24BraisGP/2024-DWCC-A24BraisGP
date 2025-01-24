@@ -19,7 +19,7 @@ function engadirElemento(event) {
 		li.append(btn);
 		listaArtigos.append(li);
 		borrarTodo.classList.remove('oculto');
-		console.log(listStorage); 
+		console.log(listStorage);
 	}
 	// Engadimos o item sobre o storage coa chave 'array' para que se sobreescribe cada vez que se engada un elemento
 	listStorage.setItem('array', JSON.stringify(arrayToStore));
