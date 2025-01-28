@@ -1,0 +1,45 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Alberto",
+      "numeroTlf": 986182540,
+      "enderezo": {
+        "cidade": "Barcelona",
+        "pais": "España",
+        "rua": "La rambla"
+      },
+      "pedidoTipico": "Adoita pedir unha bolsa de patacas pringles"
+    },
+    {
+      "id": 2,
+      "nome": "Maria",
+      "numeroTlf": 986987565,
+      "enderezo": {
+        "cidade": "Girona",
+        "pais": "España",
+        "rua": "Escola Pia"
+      },
+      "pedidoTipico": "Adoita pedir uns tomates e leituga para ensalada"
+    }
+  ],
+  "pedidos": [
+    {
+      "telefonoCliente": 986182540,
+      "descripcion": "Carta Pokémon"
+    },
+    {
+      "telefonoCliente": 986182540,
+      "descripcion": "Carta Yu-gi-oh"
+    },
+    {
+      "telefonoCliente": 986987565,
+      "descripcion": "Carta Magic"
+    },
+    {
+      "id": "3c61",
+      "descripcion": "Carta Magic - ",
+      "telefonoCliente": "986987565"
+    }
+  ]
+}
