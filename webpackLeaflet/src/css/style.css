@@ -1,0 +1,15 @@
+#map {
+	height: 700px;
+	width: 700px;
+}
+.legend {
+	padding: 10px 14px;
+	background-color: rgba(245, 245, 220, 0.8);
+	border: 1px solid grey;
+}
+.oculto {
+	display: none;
+}
+li:hover {
+	cursor: pointer;
+}
