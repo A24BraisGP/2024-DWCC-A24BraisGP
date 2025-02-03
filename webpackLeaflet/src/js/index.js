@@ -8,6 +8,8 @@ const map = L.map('map', { center: [43.386025, -8.406214], zoom: 17 });
 let markerIdArray = [];
 // const mapDiv = document.getElementById('map');
 
+let infoMeteo = document.getElementById('infoMeteo');
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution:
@@ -83,6 +85,7 @@ function updateList(eventLat, eventLng, name, description, markerId) {
 	eraseButton.addEventListener('click', eraseMarker);
 	li.append(eraseButton);
 	ul.append(li);
+	getMeteoData(eventLat, eventLng, name);
 }
 
 //Cando se pulsa sobre un punto da lista especificada no apartado anterior o mapa reposicionarase mostrando o marcador no centro e un popup coa descrición do punto
@@ -186,3 +189,33 @@ async function eraseMarkerFromDatabase(markerId) {
 }
 
 // Predición meteorolóxica: usando a API de open-meteo ou a de MeteoSIX, engade aos puntos marcados no mapa a predición meteorolóxica do día seguinte ao actual.
+
+async function getMeteoData(lat, lng, name) {
+	try {
+		let response = await fetch(
+			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m&hourly=temperature_2m,precipitation&forecast_days=1`
+		);
+
+		let data = await response.json();
+		console.log(data);
+
+		updateMeteoTable(data, name);
+	} catch (error) {
+		console.log('Erro getMeteoData -> ' + error);
+	}
+}
+
+function updateMeteoTable(data, name) {
+	let tr = document.createElement('tr');
+	let maxTemp = Math.max(...data.hourly.temperature_2m);
+	let minTemp = Math.min(...data.hourly.temperature_2m);
+	console.log(minTemp);
+
+	let temperatureTd = document.createElement('td');
+	let nameTd = document.createElement('td');
+	nameTd.innerText = name + ' : ';
+
+	temperatureTd.innerText = minTemp + ' ºC  // ' + maxTemp + 'ºC';
+	tr.append(nameTd, temperatureTd);
+	infoMeteo.append(tr);
+}
