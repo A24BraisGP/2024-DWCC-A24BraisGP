@@ -1,11 +1,15 @@
 'use strict';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Import Bootstrap JS (optional)
+import 'bootstrap';
+('use strict');
 
 // Declaramos o obxecto global L que contén os métodos dispoñibles en Leaflet. Dámoslle as coordenadas do mapa e o nivel de zoom que queiramos
 getAllMarkers();
 //A función L.map devolve un obxecto map que almacenamos nunha variable
 const map = L.map('map', { center: [43.386025, -8.406214], zoom: 17 });
 // map.removeLayer(marker);
-let markerIdArray = [];
+let markerArray = [];
 // const mapDiv = document.getElementById('map');
 
 let infoMeteo = document.getElementById('infoMeteo');
@@ -14,6 +18,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution:
 		'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	inertia: true,
 }).addTo(map);
 
 let ul = document.createElement('ul');
@@ -66,8 +71,12 @@ function addMarker(event) {
 }
 
 function createMarker(eventLat, eventLng, name, description) {
-	let marker = L.marker([eventLat, eventLng]).addTo(map);
+	let marker = L.marker([eventLat, eventLng]);
 	let popup = L.popup();
+	marker.addTo(map);
+	markerArray.push(marker);
+	let leafletId = marker._leaflet_id;
+
 	popup.setContent(name + '<hr>' + description);
 	marker.bindPopup(popup);
 }
@@ -130,7 +139,6 @@ async function getAllMarkers() {
 	try {
 		let response = await fetch('http://localhost:3000/markers');
 		let data = await response.json();
-		console.log(data);
 
 		recreateAllMarkers(data);
 	} catch (error) {
@@ -139,8 +147,6 @@ async function getAllMarkers() {
 }
 
 function recreateAllMarkers(dataAllMarkers) {
-	console.log(dataAllMarkers[0].eventLng);
-
 	for (const marker of dataAllMarkers) {
 		createMarker(marker.eventLat, marker.eventLng, marker.name, marker.des);
 		updateList(
@@ -159,18 +165,9 @@ function eraseMarker(event) {
 	if (event.target != event.currentTarget) {
 		return;
 	} else {
-		// let liList = document.querySelectorAll('.leaflet-control > ul > li');
-		// let markerList = document.querySelectorAll(
-		// 	'.leaflet-marker.pane > img '
-		// );
-		// // console.log(liList);
-
 		let selectedLi = event.target.closest('li');
-		// let liIndex = liList.indexOf(selectedLi);
-
 		let markerId = selectedLi.dataset.markerId;
 		eraseMarkerFromDatabase(markerId);
-		// map.removeLayer(markerList[liIndex]);
 		selectedLi.classList.add('oculto');
 	}
 }
@@ -197,7 +194,6 @@ async function getMeteoData(lat, lng, name) {
 		);
 
 		let data = await response.json();
-		console.log(data);
 
 		updateMeteoTable(data, name);
 	} catch (error) {
@@ -209,7 +205,6 @@ function updateMeteoTable(data, name) {
 	let tr = document.createElement('tr');
 	let maxTemp = Math.max(...data.hourly.temperature_2m);
 	let minTemp = Math.min(...data.hourly.temperature_2m);
-	console.log(minTemp);
 
 	let temperatureTd = document.createElement('td');
 	let nameTd = document.createElement('td');
@@ -219,3 +214,5 @@ function updateMeteoTable(data, name) {
 	tr.append(nameTd, temperatureTd);
 	infoMeteo.append(tr);
 }
+
+//TODO borrar marker

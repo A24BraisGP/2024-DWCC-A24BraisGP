@@ -1,3 +1,11 @@
 {
-  "markers": []
+  "markers": [
+    {
+      "id": "d6c4",
+      "eventLat": 43.361132106881726,
+      "eventLng": -8.40806007385254,
+      "name": "proba",
+      "des": ""
+    }
+  ]
 }
