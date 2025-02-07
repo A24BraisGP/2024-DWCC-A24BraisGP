@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="info">
+			<ul>
+				<li>Nome: {{nome}}</li>
+				<li>Ano actual: {{ano}}</li>
+				<li>En 5 anos: {{ano + 5}}</li>
+			</ul>
+			imaxe como HTML
+			<div v-html="image"></div>
+			<br />
+			IMAXE COMO SRC
+			<br />
+			<img v-bind:src="imageSrc" />
+			<br />
+			<input type="text" v-bind:value="nome" />
+			<br /><br />
+			<input type="number" v-bind:value="count" />
+			<br />
+			<button type="button" @click="increase">INCREASE COUNT</button>
+			<button type="button" @click="decrease">DECREASE COUNT</button>
+		</div>
+	</body>
+</html>
