@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<form action="" method="get">
+				<input type="text" v-model="textInput" />
+				<br />
+				<textarea v-model="commentArea"></textarea>
+				<br />
+
+				<input
+					type="checkbox"
+					v-model="checked"
+					id="mary"
+					value="mary"
+				/>mary
+
+				<br />
+				<input
+					type="checkbox"
+					v-model="checked"
+					id="Allen"
+					value="Allen"
+				/>Allen
+
+				<br />
+				<input
+					type="checkbox"
+					v-model="checked"
+					id="Martha"
+					value="Martha"
+				/>Martha
+				<br />
+				<input
+					type="radio"
+					id="False"
+					value="false"
+					v-model="radio"
+				/>False
+				<br />
+				<input
+					type="radio"
+					id="True"
+					value="true"
+					v-model="radio"
+				/>True
+				<br />
+				<select name="selected" id="selected" v-model="selected">
+					<option value="" disabled>Escolle opción</option>
+					<option value="Biscoito">Biscoito</option>
+					<option value="Brazo">Brazo de Gitano</option>
+					<option value="Tocino">Tocino de ceo</option>
+				</select>
+				<input type="number" v-model="number" />
+				<button type="reset" @click="resetValue">Reset</button>
+				<button>Enivar</button>
+				<button type="button" @click="print">Print info</button>
+			</form>
+			<h1>Datos</h1>
+			<p>Text : {{textInput}}</p>
+			<p>Area: {{commentArea}}</p>
+			<p>Checked: {{checked}}</p>
+			<p>Radio: {{radio}}</p>
+			<p>Selected: {{selected}}</p>
+			<p>Number: {{number}}</p>
+		</div>
+	</body>
+</html>
