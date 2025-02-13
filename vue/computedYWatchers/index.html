@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model.number="num1" />
+			<input v-model.number="num2" />
+			<p>{{num1}} + {{num2}}</p>
+			<p>{{ result }}</p>
+			<p>{{par}}</p>
+		</div>
+	</body>
+</html>

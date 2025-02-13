@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+		<script defer src="index.js"></script>
+	</head>
+	<style>
+		.active {
+			background-color: aquamarine;
+			border: 1px solid black;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<table>
+				<tr>
+					<td :class="celda1" @click="activar">Celda 1</td>
+					<td :class="celda2" @click="activar">Celda 2</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
