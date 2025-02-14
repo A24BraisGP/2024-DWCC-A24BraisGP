@@ -14,16 +14,18 @@
 			<input v-model="newMontanaName" />
 			<input v-model.number="newMontanaAltitude" />
 			<button type="button" @click.stop="addMontana">Add Montana</button>
-			<button @click.stop="visibleNot">visible</button>
-			<ul v-if="montanas.length>0 && visible">
-				<li v-for="montana in montanas">
+			<button @click.stop="visibleNot">{{textoBoton}}</button>
+			<ul v-if="montanas.length>=0 && visible">
+				<li v-for="montana in montanas" :key="montana.id">
 					{{montana.name}} - {{montana.altitude}}M
 					<button type="button" @click.stop="deleteMontana(montana)">
 						X
 					</button>
 				</li>
 			</ul>
-			<h2 v-else>NON HAI MONTAÑAS EN MONTANA D:</h2>
+			<h2 v-else-if="montanas.length==0">
+				NON HAI MONTAÑAS EN MONTANA D:
+			</h2>
 		</div>
 	</body>
 </html>

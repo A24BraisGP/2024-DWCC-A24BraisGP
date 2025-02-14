@@ -7,17 +7,16 @@ let id = 0;
 createApp({
 	data() {
 		return {
-			montanas: [
-				{
-					id: id++,
-					name: 'Crazy Peak',
-					altitude: 3418,
-				},
-			],
+			montanas: [],
 			newMontanaName: '',
 			newMontanaAltitude: 0,
 			visible: true,
 		};
+	},
+	computed: {
+		textoBoton() {
+			return this.visible ? 'Ocultar lista' : 'Mostrar Lista';
+		},
 	},
 	methods: {
 		addMontana(event) {
@@ -41,7 +40,7 @@ createApp({
 			);
 		},
 		visibleNot() {
-			this.visible != this.visible;
+			return (this.visible = !this.visible);
 		},
 	},
 }).mount('#app');
