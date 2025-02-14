@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Montañas en Montana</h1>
+
+			<input v-model="newMontanaName" />
+			<input v-model.number="newMontanaAltitude" />
+			<button type="button" @click.stop="addMontana">Add Montana</button>
+			<button @click.stop="visibleNot">visible</button>
+			<ul v-if="montanas.length>0 && visible">
+				<li v-for="montana in montanas">
+					{{montana.name}} - {{montana.altitude}}M
+					<button type="button" @click.stop="deleteMontana(montana)">
+						X
+					</button>
+				</li>
+			</ul>
+			<h2 v-else>NON HAI MONTAÑAS EN MONTANA D:</h2>
+		</div>
+	</body>
+</html>

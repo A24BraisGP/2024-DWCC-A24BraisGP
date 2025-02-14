@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<ul v-for="num in numeros.slice().reverse()">
+				<li v-if="num%2==0">{{num}}</li>
+			</ul>
+		</div>
+	</body>
+</html>

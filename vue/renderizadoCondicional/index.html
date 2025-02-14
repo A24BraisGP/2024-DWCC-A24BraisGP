@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+		<script defer src="index.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="nomeTarefa" />
+			<button type="button" @click.stop="crearTarefa">
+				Enviar Tarefa
+			</button>
+
+			<div v-if="tarefas.length > 0">
+				<h2>Temos pendentes {{tarefaCount}} tarefas</h2>
+				<ul>
+					<li v-for="tarefa in tarefas.slice().reverse()">
+						{{tarefa}}
+					</li>
+				</ul>
+			</div>
+			<h2 v-else>NON HAI TAREFAS</h2>
+		</div>
+	</body>
+</html>

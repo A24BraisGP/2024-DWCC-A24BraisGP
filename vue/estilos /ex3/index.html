@@ -15,11 +15,23 @@
 		.claseB {
 			background-color: goldenrod;
 		}
+		.hidden {
+			display: none;
+		}
+		.visible {
+			display: block;
+		}
 	</style>
 	<body>
 		<div id="app">
 			<textarea @input="checkText"></textarea>
-			<p :class="classObj">{{paragraphText}}</p>
+			<p :class="[classObj, visibility]">{{paragraphText}}</p>
+			<button type="button" @click.stop="changeVisibility">
+				changeVisibility
+			</button>
+			<hr />
+			<textarea @input="checkText"></textarea>
+			<p :style="colorObj">{{paragraphText}}</p>
 		</div>
 	</body>
 </html>
