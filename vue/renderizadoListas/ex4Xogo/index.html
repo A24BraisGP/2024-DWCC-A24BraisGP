@@ -21,7 +21,10 @@
 			<section id="monster" class="container">
 				<h2>Monstro</h2>
 				<div class="healthbar">
-					<div class="healthbar__value"></div>
+					<div
+						class="healthbar__value"
+						:style="{width:monsterLife}"
+					></div>
 				</div>
 			</section>
 			<section id="player" class="container">
@@ -29,26 +32,42 @@
 				<div class="healthbar">
 					<div
 						class="healthbar__value"
-						:style="{witdh:playerLife}"
+						:style="{width:playerLife}"
 					></div>
 				</div>
 			</section>
-			<section class="container">
+			<section class="container" v-if="victor != ''">
 				<h2>Fin partida!</h2>
-				<h3>Perdiches!</h3>
-				<h3>Ganaches</h3>
-				<h3>Empate</h3>
-				<button>Novo xogo</button>
+				<h3 v-show="victor === 'monster'">Perdiches!</h3>
+				<h3 v-show="victor === 'player'">Ganaches</h3>
+				<h3 v-show="victor === 'draw'">Empate</h3>
+				<button @click="initializeGame">Novo xogo</button>
 			</section>
-			<section id="controls">
-				<button>ATAQUE</button>
-				<button>ATAQUE ESPECIAL</button>
-				<button>CURACIÓN</button>
-				<button>RENDERSE</button>
+			<section id="controls" v-if="!isGameEnded">
+				<button @click.stop="normalAttack" @click="turnCount++">
+					ATAQUE
+				</button>
+				<button :disabled="isSpecialActive" @click.stop="specialAttack">
+					ATAQUE ESPECIAL
+				</button>
+				<button @click.stop="healing" @click="turnCount++">
+					CURACIÓN
+				</button>
+				<button @click.stop="playerGiveUp">RENDERSE</button>
 			</section>
 			<section id="log" class="container">
 				<h2>Rexistro da batalla</h2>
-				<ul></ul>
+				<ul>
+					<li v-for="log in logs.slice().reverse() ">
+						<p :style="{display:'inline'}" :class="log.logClass">
+							{{log.user}}
+						</p>
+						{{log.action}}
+						<p :style="{display:'inline'}" :class="log.pointClass">
+							{{log.points}}
+						</p>
+					</li>
+				</ul>
 			</section>
 		</div>
 	</body>
