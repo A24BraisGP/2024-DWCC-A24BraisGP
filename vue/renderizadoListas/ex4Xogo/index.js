@@ -35,7 +35,6 @@ createApp({
 		},
 	},
 	methods: {
-		//TODO preguntar por que non se inicializa adecuadamente o this.victor
 		initializeGame() {
 			this.victor = '';
 			this.player.life = this.MAXLIFE;
@@ -84,8 +83,9 @@ createApp({
 			});
 		},
 		healing() {
+			let oldLife = this.player.life;
 			let healingPoints = Math.floor(Math.random() * (20 - 8) + 8);
-			if ((this.player.life += healingPoints >= this.MAXLIFE)) {
+			if ((oldLife += healingPoints) >= this.MAXLIFE) {
 				this.player.life = this.MAXLIFE;
 			} else {
 				this.player.life += healingPoints;
@@ -105,11 +105,14 @@ createApp({
 				this.player.life <= this.MINLIFE
 			) {
 				this.victor = 'monster';
+				this.player.life = this.MINLIFE + 1;
 				this.gameEnded = true;
 				return;
 			}
 			if (this.monster.life <= this.MINLIFE) {
 				this.victor = 'player';
+				this.monster.life = this.MINLIFE + 1;
+
 				this.gameEnded = true;
 
 				return;
@@ -128,13 +131,12 @@ createApp({
 		playerGiveUp() {
 			this.gameEnded = true;
 			this.victor = 'monster';
-			//rompe polo problema coa inicialización de victor
-			//	this.player.life = this.MINLIFE + 1;
+			this.player.life = this.MINLIFE + 1;
 		},
 	},
 	watch: {
 		'player.life': function (newLife, oldLife) {
-			if (newLife >= this.MAXLIFE || newLife <= this.MINLIFE) {
+			if (newLife <= this.MINLIFE) {
 				this.checkStatus();
 				return;
 			}
@@ -147,10 +149,7 @@ createApp({
 		},
 		turnCount() {
 			this.specialActive == true ? (this.turnCount = 0) : '';
-			console.log(this.turnCount + ' turncounit');
-
 			this.turnCount == 3 ? (this.specialActive = true) : '';
-			console.log(this.turnCount);
 		},
 	},
 }).mount('#game');
