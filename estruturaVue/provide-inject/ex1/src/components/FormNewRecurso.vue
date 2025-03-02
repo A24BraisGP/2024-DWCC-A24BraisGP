@@ -5,7 +5,7 @@ export default {
 			newTitulo: '',
 			newDescricion: '',
 			newLigazon: '',
-			showModal: false,
+			showMask: false,
 		};
 	},
 	inject: ['addNewRecurso', 'recursosWeb'],
@@ -17,9 +17,9 @@ export default {
 			return this.getHigherId;
 		},
 		formIncomplete() {
-			return this.newTitulo != '' &&
-				this.newDescricion != '' &&
-				this.newLigazon != ''
+			return this.newTitulo == '' ||
+				this.newDescricion == '' ||
+				this.newLigazon == ''
 				? true
 				: false;
 		},
@@ -28,27 +28,43 @@ export default {
 </script>
 
 <template>
-	<form action="" class="border-2">
-		<input v-model="newId" hidden />
-		<input v-model="newTitulo" class="border-2" />Titulo
-		<input v-model="newDescricion" class="border-2" />Descricion
-		<input v-model="newLigazon" class="border-2" />Ligazon
-		<button
-			type="button"
-			@click.stop="
-				addNewRecurso(newId, newTitulo, newDescricion, newLigazon)
-			"
-			class="bg-red-300 hover:bg-amber-500 p-3 rounded-2xl"
-		>
-			Crear Recurso
-		</button>
-	</form>
+	<div class="grid grid-cols-1 place-items-center">
+		<form action="" class="border-2">
+			<input v-model="newId" hidden />
+			<input v-model="newTitulo" class="border-2" />Titulo
+			<input v-model="newDescricion" class="border-2" />Descricion
+			<input v-model="newLigazon" class="border-2" />Ligazon
+			<button
+				type="button"
+				@click.stop="
+					addNewRecurso(newId, newTitulo, newDescricion, newLigazon)
+				"
+				@click="showMask = !showMask"
+				class="bg-red-300 hover:bg-amber-500 p-3 rounded-2xl"
+			>
+				Crear Recurso
+			</button>
+		</form>
+	</div>
 	<teleport to="body">
-		<div v-if="showModal">
-			<div class="modal-container">
+		<div v-if="formIncomplete && showMask">
+			<div class="flex h-screen justify-center items-center gap-2">
 				<div class="modal-mask">
-					<p class="text-center">Form must be complete</p>
-					<button class="border-2 p-2" @click.stop="">Return</button>
+					<div class="modal-container">
+						<div class="text-centered items-center">
+							<p
+								class="text-center bg-gray-300 border-2 text-black mb-2"
+							>
+								FORM MUST BE COMPLETE TO ADD
+							</p>
+							<button
+								class="border-2 bg-amber-400 hover:bg-amber-600 p-3 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear self-center"
+								@click.stop="showMask = false"
+							>
+								Return
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

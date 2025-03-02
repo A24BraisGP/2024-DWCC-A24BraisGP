@@ -19,6 +19,7 @@ export default {
 		return {
 			addNewRecurso: this.addNewRecurso,
 			recursosWeb: computed(() => this.recursosWeb),
+			eliminarRecurso: this.eliminarRecurso,
 		};
 	},
 	components: {
@@ -33,6 +34,10 @@ export default {
 				ligazon: newLigazon,
 			});
 		},
+		eliminarRecurso(id) {
+			let index = this.recursosWeb.indexOf((el) => el.id === id);
+			this.recursosWeb.splice(index, 1);
+		},
 	},
 };
 </script>
@@ -46,7 +51,7 @@ export default {
 		</nav>
 	</header>
 
-	<div class="grid grid-cols-1 place-items-center w-100">
+	<div class="grid grid-cols-1 place-items-center w-screen" id="mainAreaDiv">
 		<MainArea></MainArea>
 	</div>
 </template>
