@@ -7,36 +7,47 @@ export default {
 		return {
 			personas: [
 				{
-					id: 0,
-					nome: 'proba1 ',
-					apelido: 'proba1 ap',
-				},
-				{
 					id: 1,
-					nome: 'proba2',
-					apelido: 'proba2 ap',
+					nome: 'Ada',
+					apelido: 'Lovelace',
 				},
 			],
 		};
 	},
 	computed: {
-		getHigherId() {
-			return Math.max(...this.personas.map((el) => el.id)) + 1;
+		getRandomId() {
+			return Math.floor(Math.random() * 10000);
 		},
 	},
 	methods: {
 		engadirPersoa(newNome, newApelido) {
 			this.personas.push({
-				id: this.getHigherId,
+				id: this.getRandomId,
 				nome: newNome,
 				apelido: newApelido,
 			});
+		},
+		actualizarPersoa(newNome, newApelido, id) {
+			if (this.personas.some((el) => el.id === id)) {
+				let pAct = this.personas.find((el) => el.id === id);
+				pAct.nome = newNome;
+				pAct.apelido = newApelido;
+				console.log(pAct);
+			}
+		},
+		borrarPersoa(id) {
+			let ind = this.personas.findIndex((el) => el.id === id);
+			if (ind != -1) {
+				this.personas.splice(ind, 1);
+			}
 		},
 	},
 	provide() {
 		return {
 			personas: computed(() => this.personas),
 			engadirPersoa: this.engadirPersoa,
+			actualizarPersoa: this.actualizarPersoa,
+			borrarPersoa: this.borrarPersoa,
 		};
 	},
 	components: {
