@@ -24,6 +24,20 @@ export default {
 				: false;
 		},
 	},
+	methods: {
+		checkShowMask() {
+			if (this.showMask == false && this.formIncomplete == false) {
+				this.addNewRecurso(
+					this.getHigherId,
+					this.newTitulo,
+					this.newDescricion,
+					this.newLigazon
+				);
+			} else {
+				this.showMask = !this.showMask;
+			}
+		},
+	},
 };
 </script>
 
@@ -36,10 +50,7 @@ export default {
 			<input v-model="newLigazon" class="border-2" />Ligazon
 			<button
 				type="button"
-				@click.stop="
-					addNewRecurso(newId, newTitulo, newDescricion, newLigazon)
-				"
-				@click="showMask = !showMask"
+				@click.stop="checkShowMask"
 				class="bg-red-300 hover:bg-amber-500 p-3 rounded-2xl"
 			>
 				Crear Recurso
