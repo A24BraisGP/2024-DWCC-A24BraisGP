@@ -5,6 +5,24 @@ export default {
 	data() {
 		return {};
 	},
+	methods: {
+		actButt(event) {
+			document
+				.querySelectorAll('button')
+				.forEach((el) =>
+					el.classList.remove(
+						'outline-2',
+						'outline-offset-2',
+						'outline-green-200'
+					)
+				);
+			event.target.classList.add(
+				'outline-2',
+				'outline-offset-2',
+				'outline-green-200'
+			);
+		},
+	},
 };
 </script>
 
@@ -13,32 +31,32 @@ export default {
 		<li>
 			<button
 				type="button"
-				class="btn btn-accent focus:outline-2 focus:outline-offset-2 focus:outline-green-200"
-				@click.stop="
-					$emit('update:opcionPulsada', $event.target.innerText)
-				"
+				class="btn btn-accent"
+				value="Baixo"
+				@click="actButt"
+				@click.stop="$emit('update:opcionPulsada', $event.target.value)"
 			>
 				Baixo
 			</button>
 		</li>
 		<li>
 			<button
-				class="btn btn-accent focus:outline-2 focus:outline-offset-2 focus:outline-green-200"
+				class="btn btn-accent"
 				type="button"
-				@click.stop="
-					$emit('update:opcionPulsada', $event.target.innerText)
-				"
+				value="Medio"
+				@click="actButt"
+				@click.stop="$emit('update:opcionPulsada', $event.target.value)"
 			>
 				Medio
 			</button>
 		</li>
 		<li>
 			<button
-				class="btn btn-accent focus:outline-2 focus:outline-offset-2 focus:outline-green-200"
+				class="btn btn-accent"
 				type="button"
-				@click.stop="
-					$emit('update:opcionPulsada', $event.target.innerText)
-				"
+				value="Alto"
+				@click="actButt"
+				@click.stop="$emit('update:opcionPulsada', $event.target.value)"
 			>
 				Alto
 			</button>
